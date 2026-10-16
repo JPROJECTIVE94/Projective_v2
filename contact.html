@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Contact | Projective Finance</title>
+  <meta name="description" content="Bring a commercial solar or municipal infrastructure project to Projective. Tell us about the deal and we will reply within one business day.">
+  <link rel="icon" href="assets/projective-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&amp;family=Outfit:wght@400;500&amp;family=Space+Mono:wght@400;700&amp;display=swap">
+  <link rel="stylesheet" href="styles.css?v=20">
+</head>
+<body>
+<div style="font-family: Outfit, sans-serif; color: #14161A; background: #FFFFFF; width: 100%; min-height: 100%; box-sizing: border-box; display: flex; flex-direction: column">
+
+  <!-- NAV band (navy, matches the home hero) -->
+  <section class="dots" style="background-color: #09133A; color: #FFFFFF; position: relative">
+    <div class="wrap" style="position: relative; max-width: 1360px; margin: 0 auto; padding: 22px 40px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid rgba(255,255,255,0.12)">
+      <a href="index.html" aria-label="Projective home" style="display: flex; align-items: center">
+        <img src="assets/projective-logo.svg" alt="Projective" style="height: 26px; width: auto; display: block">
+      </a>
+      <div class="nav-right" style="display: flex; align-items: center; gap: 22px"><a class="navlink-light" href="case-study.html">Case study</a>
+      <a class="btn-outline-light" href="contact.html" style="padding: 10px 18px; font-size: 14px">Talk to us</a></div>
+    </div>
+  </section>
+
+  <!-- CONTACT split -->
+  <section class="pad-m" style="background: #FFFFFF; padding: 0">
+    <div class="wrap cf-grid" style="max-width: 1360px; margin: 0 auto; padding: 0 40px; box-sizing: border-box">
+      <div class="cf-left">
+        <div style="display: flex; align-items: center; gap: 10px; font: 400 12px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A">
+          <span aria-hidden="true" style="width: 8px; height: 8px; background: #D9A32B; display: inline-block"></span>
+          Contact
+        </div>
+        <h1 class="h1-m" style="margin: 0; font: 600 60px/1.06 Manrope, sans-serif; letter-spacing: -0.03em; color: #09133A; max-width: 560px">Get your project financed<span style="color: #D9A32B">.</span></h1>
+        <p style="margin: 0; font: 400 18px/1.55 Outfit, sans-serif; color: #4B5066; max-width: 480px">We fund infrastructure end to end, from development capital through perm debt. Qualifying projects get pooled and closed from our global network of qualified investors.</p>
+      </div>
+
+      <form class="cf-form" id="contact-form" action="mailto:hello@projective.finance" method="post" enctype="text/plain" novalidate>
+        <div class="cf-field">
+          <label for="cf-name" style="font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A">Name<span style="color: #D9A32B">*</span></label>
+          <input class="cf-input" id="cf-name" name="name" type="text" placeholder="e.g. Richard Parker" required>
+        </div>
+        <div class="cf-field">
+          <label for="cf-company" style="font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A">Company<span style="color: #D9A32B">*</span></label>
+          <input class="cf-input" id="cf-company" name="company" type="text" placeholder="e.g. Riverside Solar LLC" required>
+        </div>
+        <div class="cf-field">
+          <label for="cf-email" style="font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A">Email<span style="color: #D9A32B">*</span></label>
+          <input class="cf-input" id="cf-email" name="email" type="email" placeholder="you@company.com" required>
+        </div>
+        <div class="cf-field">
+          <label for="cf-role" style="font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A">I am a<span style="color: #D9A32B">*</span></label>
+          <select class="cf-input" id="cf-role" name="role" required><option value="" selected disabled>Select</option><option value="Developer">Developer</option><option value="Lender">Lender</option><option value="Municipality">Municipality</option><option value="Other">Other</option></select>
+        </div>
+        <div class="cf-field">
+          <label for="cf-projectType" style="font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A">Project type<span style="color: #D9A32B">*</span></label>
+          <select class="cf-input" id="cf-projectType" name="projectType" required><option value="" selected disabled>Select</option><option value="Commercial solar">Commercial solar</option><option value="Community solar">Community solar</option><option value="Residential">Residential</option><option value="Battery storage">Battery storage</option><option value="Other">Other</option></select>
+        </div>
+        <div class="cf-field">
+          <label for="cf-state" style="font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A">Project state<span style="color: #D9A32B">*</span></label>
+          <select class="cf-input" id="cf-state" name="state" required><option value="" selected disabled>Select</option><option value="Alabama">Alabama</option><option value="Alaska">Alaska</option><option value="Arizona">Arizona</option><option value="Arkansas">Arkansas</option><option value="California">California</option><option value="Colorado">Colorado</option><option value="Connecticut">Connecticut</option><option value="Delaware">Delaware</option><option value="District of Columbia">District of Columbia</option><option value="Florida">Florida</option><option value="Georgia">Georgia</option><option value="Hawaii">Hawaii</option><option value="Idaho">Idaho</option><option value="Illinois">Illinois</option><option value="Indiana">Indiana</option><option value="Iowa">Iowa</option><option value="Kansas">Kansas</option><option value="Kentucky">Kentucky</option><option value="Louisiana">Louisiana</option><option value="Maine">Maine</option><option value="Maryland">Maryland</option><option value="Massachusetts">Massachusetts</option><option value="Michigan">Michigan</option><option value="Minnesota">Minnesota</option><option value="Mississippi">Mississippi</option><option value="Missouri">Missouri</option><option value="Montana">Montana</option><option value="Nebraska">Nebraska</option><option value="Nevada">Nevada</option><option value="New Hampshire">New Hampshire</option><option value="New Jersey">New Jersey</option><option value="New Mexico">New Mexico</option><option value="New York">New York</option><option value="North Carolina">North Carolina</option><option value="North Dakota">North Dakota</option><option value="Ohio">Ohio</option><option value="Oklahoma">Oklahoma</option><option value="Oregon">Oregon</option><option value="Pennsylvania">Pennsylvania</option><option value="Rhode Island">Rhode Island</option><option value="South Carolina">South Carolina</option><option value="South Dakota">South Dakota</option><option value="Tennessee">Tennessee</option><option value="Texas">Texas</option><option value="Utah">Utah</option><option value="Vermont">Vermont</option><option value="Virginia">Virginia</option><option value="Washington">Washington</option><option value="West Virginia">West Virginia</option><option value="Wisconsin">Wisconsin</option><option value="Wyoming">Wyoming</option></select>
+        </div>
+        <fieldset class="cf-field cf-seg-field">
+          <legend style="font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A">REC eligible<span style="color: #D9A32B">*</span></legend>
+          <div class="cf-seg" role="radiogroup">
+            <label><input type="radio" name="rec" value="Yes" required><span>Yes</span></label>
+            <label><input type="radio" name="rec" value="No"><span>No</span></label>
+            <label><input type="radio" name="rec" value="Not sure"><span>Not sure</span></label>
+          </div>
+        </fieldset>
+        <div class="cf-field">
+          <label for="cf-capital" style="font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A">Capital need range<span style="color: #D9A32B">*</span></label>
+          <select class="cf-input" id="cf-capital" name="capital" required><option value="" selected disabled>Select</option><option value="$500K to $1M">$500K to $1M</option><option value="$1M to $2.5M">$1M to $2.5M</option><option value="$2.5M to $5M">$2.5M to $5M</option><option value="$5M to $10M">$5M to $10M</option><option value="$10M to $25M">$10M to $25M</option><option value="$25M and above">$25M and above</option></select>
+        </div>
+        <div class="cf-field">
+          <label for="cf-notes" style="font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A">Anything else we should know?</label>
+          <textarea class="cf-input" id="cf-notes" name="notes" rows="3" placeholder="Site, stage, timeline"></textarea>
+          <label class="cf-upload" for="cf-files">
+            <input id="cf-files" name="files" type="file" multiple accept=".pdf,.ppt,.pptx,.key,.doc,.docx,.xls,.xlsx,.csv,.png,.jpg,.jpeg">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span class="cf-upload__text"><strong>Upload documents or a deck</strong><span>PDF, PowerPoint, Excel or Word · click or drop files here</span></span>
+            <span class="cf-upload__list" id="cf-files-list" aria-live="polite"></span>
+          </label>
+        </div>
+        <label class="cf-check">
+          <input type="checkbox" name="consent" required>
+          <span>I accept the <a href="https://www.projective.finance/privacy-policy" style="color: #09133A; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #D9A32B">Privacy Policy</a>.</span>
+        </label>
+        <div class="cf-actions">
+          <button class="btn-primary" type="submit">Submit
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+          <span class="cf-error" id="cf-error" role="alert" hidden>Please complete the required fields.</span>
+        </div>
+        <div class="cf-thanks" id="cf-thanks" hidden>
+          <div style="display: flex; align-items: center; gap: 10px; font: 400 12px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A"><span aria-hidden="true" style="width: 8px; height: 8px; background: #D9A32B; display: inline-block"></span>Received</div>
+          <h2 style="margin: 0; font: 600 32px/1.1 Manrope, sans-serif; letter-spacing: -0.03em; color: #09133A">Thank you<span style="color: #D9A32B">.</span></h2>
+          <p style="margin: 0; font: 400 16px/1.55 Outfit, sans-serif; color: #4B5066">Your email client should have opened with the details filled in. Please attach any documents you selected before sending. If it did not open, write to <a href="mailto:hello@projective.finance" style="color: #09133A; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #D9A32B">hello@projective.finance</a>. We reply within one business day.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER (white, dense) -->
+  <footer style="background: #FFFFFF; border-top: 1px solid rgba(9,19,58,0.10); padding: 64px 0 40px">
+    <div class="wrap" style="max-width: 1360px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 48px">
+      <div class="stack-m" style="display: flex; justify-content: space-between; gap: 48px; flex-wrap: wrap">
+        <div style="display: flex; flex-direction: column; gap: 18px; max-width: 320px">
+          <img src="assets/projective-logo-dark.svg" alt="Projective" style="height: 26px; width: auto; display: block; align-self: flex-start">
+          <p style="margin: 0; font: 400 14px/1.6 Outfit, sans-serif; color: #4B5066">Project finance for renewable and municipal infrastructure.</p>
+          <p style="margin: 0; display: inline-flex; align-items: center; gap: 10px; font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A"><svg aria-hidden="true" width="26" height="18" viewBox="0 0 40 28" style="display: block; flex: none"><rect width="40" height="28" fill="#BF0A30"/><rect x="2" y="2" width="36" height="24" fill="#FFFFFF"/><rect x="4.2" y="4.2" width="31.6" height="19.6" fill="#002868"/><g transform="translate(9.6 7.4) scale(0.64)"><path d="M1.4 11.8 L2.2 14.6 L3.4 17.4 L5.2 14.2 L6.8 14.6 L7.6 15.2 L7.2 20.4 L9.6 20.4 L10.4 15.6 L12 15.8 L13 15.8 L12.8 20.4 L15.2 20.4 L15.6 15.6 L23 15.6 L23.6 15.6 L23.2 20.4 L25.6 20.4 L26 15.8 L27 15.6 L27.4 20.4 L29.6 20.4 L29.8 15 L31 11 L30.4 7 L26 5.6 L19 4.6 L12.5 2.4 L9 3.4 L7 5.6 L5.4 7.4 L4.2 8.4 L2.4 9.8 Z" fill="#FFFFFF"/><path d="M4.8 8.2 Q3 7.4 3.4 5.2 M30.6 7.6 Q32.4 10 31.2 13" fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round"/><circle cx="17" cy="10.4" r="3" fill="#002868"/><circle cx="17" cy="10.4" r="1.8" fill="#FFFFFF"/></g></svg>Proudly made in Wyoming</p>
+          <div style="display: flex; gap: 14px; align-items: center">
+            <a href="https://x.com/ProjectiveFin" aria-label="Projective on X" style="display: inline-flex; width: 36px; height: 36px; border: 1px solid rgba(9,19,58,0.18); border-radius: 4px; align-items: center; justify-content: center">
+              <svg role="img" aria-label="X" width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M215,219.85a8,8,0,0,1-7,4.15H160a8,8,0,0,1-6.75-3.71l-40.49-63.63L53.92,221.38a8,8,0,0,1-11.84-10.76l61.77-68L41.25,44.3A8,8,0,0,1,48,32H96a8,8,0,0,1,6.75,3.71l40.49,63.63,58.84-64.72a8,8,0,0,1,11.84,10.76l-61.77,67.95,62.6,98.38A8,8,0,0,1,215,219.85Z"></path></svg>
+            </a>
+            <a href="contact.html" aria-label="Projective on Telegram" style="display: inline-flex; width: 36px; height: 36px; border: 1px solid rgba(9,19,58,0.18); border-radius: 4px; align-items: center; justify-content: center">
+              <svg role="img" aria-label="Telegram" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </a>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <div style="font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Legal</div>
+          <a href="https://www.projective.finance/privacy-policy" style="font: 400 15px Outfit, sans-serif">Privacy Policy</a>
+          <a href="https://www.projective.finance/" style="font: 400 15px Outfit, sans-serif">Terms</a>
+        </div>
+      </div>
+      <div style="border-top: 1px solid rgba(9,19,58,0.10); padding-top: 24px; display: flex; flex-direction: column; gap: 12px">
+        <div style="font: 400 12px 'Space Mono', monospace; letter-spacing: 0.06em; color: #4B5066">© 2026 Projective Finance LLC</div>
+        <p style="margin: 0; font: 400 12px/1.6 Outfit, sans-serif; color: #6B6F80; max-width: 980px">Nothing on this page is an offer to sell or a solicitation of an offer to buy any security. Lending into project pools involves risk, including the possible loss of principal. Past performance is not indicative of future results. Figures shown in product illustrations are examples only.</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script src="script.js?v=16"></script>
+</body>
+</html>
