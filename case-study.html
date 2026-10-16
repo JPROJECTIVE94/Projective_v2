@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&amp;family=Outfit:wght@400;500&amp;family=Space+Mono:wght@400;700&amp;display=swap">
-  <link rel="stylesheet" href="styles.css?v=20">
+  <link rel="stylesheet" href="styles.css?v=21">
 </head>
 <body>
 <div style="font-family: Outfit, sans-serif; color: #14161A; background: #FFFFFF; width: 100%; min-height: 100%; box-sizing: border-box; display: flex; flex-direction: column">
@@ -30,8 +30,8 @@
     <div class="wrap stack-m" style="max-width: 1360px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; display: flex; gap: 64px; align-items: center">
       <div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
         <div style="display: flex; align-items: center; gap: 10px; font: 400 12px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A"><span aria-hidden="true" style="width: 8px; height: 8px; background: #D9A32B; display: inline-block"></span>Case study · Econergy · Illinois</div>
-        <h1 class="h1-m" style="margin: 0; font: 600 54px/1.06 Manrope, sans-serif; letter-spacing: -0.03em; color: #09133A; max-width: 640px">Illinois schools needed solar built. Projective funded it in two weeks, not six months<span style="color: #D9A32B">.</span></h1>
-        <p style="margin: 0; font: 400 19px/1.55 Outfit, sans-serif; color: #4B5066; max-width: 560px">Shovel ready projects, public school offtakers, and a hard federal deadline. This is what American infrastructure looks like when capital moves as fast as the builders do.</p>
+        <h1 class="h1-m" style="margin: 0; font: 600 54px/1.06 Manrope, sans-serif; letter-spacing: -0.03em; color: #09133A; max-width: 640px">Illinois schools needed solar. Projective funded it in two weeks, not six months<span style="color: #D9A32B">.</span></h1>
+        <p style="margin: 0; font: 400 19px/1.55 Outfit, sans-serif; color: #4B5066; max-width: 560px">Shovel-ready projects, public school offtakers, and a hard federal deadline. This is what American infrastructure looks like when capital moves as fast as the people building it.</p>
       </div>
       <figure class="cs-figure" style="flex: 0 1 520px; min-width: 0; margin: 0; background: #F7F7F5; border: 1px solid rgba(9,19,58,0.12); padding: 28px">
           <svg viewBox="0 0 560 360" role="img" aria-label="A school building with a rooftop solar array under a morning sun" style="width: 100%; height: auto; display: block">
@@ -112,25 +112,26 @@
   <!-- TIMELINE -->
   <section class="pad-m" style="background: #FFFFFF; padding: 0 0 96px">
     <div class="wrap" style="max-width: 1360px; margin: 0 auto; padding: 0 40px; box-sizing: border-box">
-      <div style="border: 1px solid rgba(9,19,58,0.12); background: #F7F7F5; padding: 28px 32px; display: flex; flex-direction: column; gap: 18px">
+      <div class="cs-timeline" data-timeline style="border: 1px solid rgba(9,19,58,0.12); background: #F7F7F5; padding: 28px 32px; display: flex; flex-direction: column; gap: 18px">
         <div style="font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Time to committed capital</div>
         <div class="cs-row" style="display: flex; align-items: center; gap: 18px">
           <div class="cs-row__label" style="flex: 0 0 200px; font: 400 14px Outfit, sans-serif; color: #6B6F80">Bank construction loan</div>
-          <div style="flex: 1 1 300px; height: 26px; background: repeating-linear-gradient(90deg, rgba(9,19,58,0.14) 0 10px, rgba(9,19,58,0.06) 10px 20px); position: relative">
-            <div style="position: absolute; right: 12px; top: 0; height: 26px; display: flex; align-items: center; font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A">4 to 6 months</div>
+          <div style="flex: 1 1 300px; height: 26px; background: rgba(9,19,58,0.05); position: relative">
+            <div class="cs-bar cs-bar--bank"></div>
+            <div class="cs-bar-label cs-bar-label--bank" style="position: absolute; right: 12px; top: 0; height: 26px; display: flex; align-items: center; font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #8A2B22">4 to 6 months</div>
           </div>
         </div>
         <div class="cs-row" style="display: flex; align-items: center; gap: 18px">
           <div class="cs-row__label" style="flex: 0 0 200px; font: 600 14px Manrope, sans-serif; color: #09133A">Projective</div>
-          <div style="flex: 1 1 300px; display: flex; align-items: center; gap: 12px">
-            <div style="width: 8%; min-width: 48px; height: 26px; background: #D9A32B"></div>
-            <div style="font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A">[2 weeks]</div>
+          <div style="flex: 1 1 300px; height: 26px; background: rgba(9,19,58,0.05); position: relative">
+            <div class="cs-bar cs-bar--proj"></div>
+            <div class="cs-bar-label cs-bar-label--proj" style="position: absolute; left: calc(8% + 12px); top: 0; height: 26px; display: flex; align-items: center; font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #1C7A46; white-space: nowrap">[2 weeks]</div>
           </div>
         </div>
         <div class="cs-row" style="display: flex; align-items: center; gap: 18px">
           <div class="cs-row__label" style="flex: 0 0 200px; font: 400 14px Outfit, sans-serif; color: #6B6F80">ITC window</div>
           <div style="flex: 1 1 300px; display: flex; align-items: center; gap: 12px">
-            <div style="width: 20%; min-width: 96px; height: 1px; background: #09133A; position: relative"><div style="position: absolute; right: -1px; top: -6px; width: 1px; height: 13px; background: #09133A"></div></div>
+            <div class="cs-itc" style="width: 20%; min-width: 96px; height: 1px; background: #09133A; position: relative"><div style="position: absolute; right: -1px; top: -6px; width: 1px; height: 13px; background: #09133A"></div></div>
             <div style="font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Deadline</div>
           </div>
         </div>
@@ -181,7 +182,7 @@
   <section class="pad-m" style="background: #FFFFFF; padding: 96px 0 64px">
     <div class="wrap" style="max-width: 1360px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
       <div style="width: 48px; height: 4px; background: #D9A32B"></div>
-      <blockquote style="margin: 0; font: 500 30px/1.3 Manrope, sans-serif; letter-spacing: -0.02em; color: #09133A; max-width: 28em">“[Testimonial from Econergy, one or two sentences on speed and ease of process.]”</blockquote>
+      <blockquote style="margin: 0; font: 500 30px/1.3 Manrope, sans-serif; letter-spacing: -0.02em; color: #09133A; max-width: 28em">“Projective allowed us to move quicker while staying fully compliant with state and county regulations to get projects shovel ready.”</blockquote>
       <div style="font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">[Name, title] · Econergy</div>
     </div>
   </section>
@@ -246,6 +247,6 @@
   </footer>
 
 </div>
-<script src="script.js?v=16"></script>
+<script src="script.js?v=21"></script>
 </body>
 </html>

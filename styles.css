@@ -179,3 +179,17 @@ textarea.cf-input{resize:vertical;min-height:72px}
 
 /* Hero starfield: full width and dimmer on phones */
 @media (max-width:900px){.stars{width:100% !important;opacity:.5}}
+
+/* Case study timeline animation */
+.cs-bar{position:absolute;left:0;top:0;bottom:0;width:0}
+.cs-bar--bank{background:#F2B8B5;transition:width 2.6s cubic-bezier(.2,.7,.2,1)}
+.cs-bar--proj{background:#2E9E5B;transition:width .9s cubic-bezier(.2,.7,.2,1) .3s}
+.cs-bar-label{opacity:0;transform:translateX(6px);transition:opacity .5s ease,transform .5s ease}
+.cs-bar-label--bank{transition-delay:2.3s}
+.cs-bar-label--proj{transition-delay:1s}
+.cs-itc{transform:scaleX(0);transform-origin:left center;transition:transform .8s cubic-bezier(.2,.7,.2,1) 1.2s}
+.cs-timeline.is-in .cs-bar--bank{width:100%}
+.cs-timeline.is-in .cs-bar--proj{width:8%;min-width:48px}
+.cs-timeline.is-in .cs-bar-label{opacity:1;transform:none}
+.cs-timeline.is-in .cs-itc{transform:scaleX(1)}
+@media (prefers-reduced-motion:reduce){.cs-bar,.cs-bar-label,.cs-itc{transition:none !important}}

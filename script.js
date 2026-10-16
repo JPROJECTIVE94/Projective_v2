@@ -121,3 +121,13 @@ document.querySelectorAll('.pool-tab').forEach(function (tab) {
   document.addEventListener('visibilitychange', function () { if (!document.hidden) { visible = true; start(); } });
   var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { build(); draw(performance.now()); }, 150); });
 })();
+
+// Case study: play the timeline bars when the figure scrolls into view
+(function () {
+  var el = document.querySelector('[data-timeline]');
+  if (!el) return;
+  var play = function () { el.classList.add('is-in'); };
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { play(); return; }
+  var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { play(); io.disconnect(); } }, { threshold: 0.4 });
+  io.observe(el);
+})();
