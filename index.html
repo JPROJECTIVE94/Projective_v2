@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&amp;family=Outfit:wght@400;500&amp;family=Space+Mono:wght@400;700&amp;display=swap">
-  <link rel="stylesheet" href="styles.css?v=24">
+  <link rel="stylesheet" href="styles.css?v=26">
 </head>
 <body>
 <div style="font-family: Outfit, sans-serif; color: #14161A; background: #FFFFFF; width: 100%; min-height: 100%; box-sizing: border-box; display: flex; flex-direction: column">
@@ -167,10 +167,6 @@
     <div class="flow__pin">
       <div class="wrap flow__head">
         <div style="display: flex; flex-direction: column; gap: 14px">
-          <div style="display: flex; align-items: center; gap: 10px; font: 400 12px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A">
-            <span aria-hidden="true" style="width: 8px; height: 8px; background: #D9A32B; display: inline-block"></span>
-            How a deal moves through Projective
-          </div>
           <h2 class="h2-m" style="margin: 0; font: 600 44px/1.08 Manrope, sans-serif; letter-spacing: -0.03em; color: #09133A">Upload. Verify. Funded.</h2>
         </div>
         <nav class="flow__tabs" aria-label="Steps">
@@ -606,18 +602,18 @@
   <!-- THESIS (white, split: pool card left, big statement right) -->
   <section id="about" class="pad-m" style="background: #F7F7F5; border-top: 1px solid rgba(9,19,58,0.10); padding: 112px 0 96px">
     <div class="wrap stack-m" style="max-width: 1360px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; display: flex; gap: 72px; align-items: center; justify-content: space-between">
-      <div class="pool-card" style="flex: 0 0 400px; background: #FFFFFF; border: 1px solid rgba(9,19,58,0.14); display: flex; flex-direction: column; box-sizing: border-box">
-        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid rgba(9,19,58,0.10)">
-          <span style="display: inline-flex; align-items: center; gap: 8px; font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A"><span aria-hidden="true" style="width: 7px; height: 7px; background: #D9A32B; display: inline-block"></span>Projective Credit Facilities</span>
+      <div class="pool-card fac" style="flex: 0 0 520px; min-width: 0; display: flex; flex-direction: column; box-sizing: border-box; gap: 12px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 0 2px">
+          <span style="display: inline-flex; align-items: center; gap: 8px; font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A"><span aria-hidden="true" style="width: 7px; height: 7px; background: #D9A32B; display: inline-block"></span>Capital Structure Snapshot</span>
           <span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">As of 17 Oct 2026</span>
         </div>
-        <div role="tablist" aria-label="Pools" class="pool-tabs" style="display: flex; flex-direction: column; border-bottom: 1px solid rgba(9,19,58,0.10)">
-          <button class="pool-tab" type="button" role="tab" aria-selected="true" aria-controls="pool-development" data-pool="pool-development"><span class="pool-tab__name">Lone Star Compute Pool I <span class="pool-tab__tag">[Development Capital]</span></span><span class="pool-tab__status"><i></i>Open</span></button>
-          <button class="pool-tab" type="button" role="tab" aria-selected="false" aria-controls="pool-construction" data-pool="pool-construction"><span class="pool-tab__name">PCP-1 · Illinois School Solar <span class="pool-tab__tag">[Construction Lending]</span></span><span class="pool-tab__status"><i></i>Open</span></button>
-          <button class="pool-tab" type="button" role="tab" aria-selected="false" aria-controls="pool-permanent" data-pool="pool-permanent"><span class="pool-tab__name">Upstate Michigan Muni Solar Facilities <span class="pool-tab__tag">[Permanent Debt]</span></span><span class="pool-tab__status"><i></i>Open</span></button>
-        </div>
-        <div style="padding: 16px 20px 18px">
-        <div class="pool-panel" id="pool-development" role="tabpanel" style="display: flex; flex-direction: column; gap: 14px">
+        <div class="fac-track" data-fac-track tabindex="0" role="region" aria-roledescription="carousel" aria-label="Projective credit facilities, scroll sideways">
+          <article class="fac-card" data-fac-card aria-label="Lone Star Compute Pool I" tabindex="-1">
+            <header style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 14px 20px; border-bottom: 1px solid rgba(9,19,58,0.10)">
+              <div style="display: flex; flex-direction: column; gap: 4px"><span style="font: 600 15px/1.25 Manrope, sans-serif; color: #09133A">Lone Star Compute Pool I</span><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">[Development Capital]</span></div>
+              <span class="pool-tab__status" style="margin-top: 3px"><i></i>Open</span>
+            </header>
+            <div style="padding: 16px 20px 18px; display: flex; flex-direction: column; gap: 14px">
           <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding: 4px 0 14px; border-bottom: 1px solid rgba(9,19,58,0.10)">
             <div style="display: flex; flex-direction: column; gap: 6px">
               <span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Target net yield</span>
@@ -640,8 +636,14 @@
             <div style="height: 6px; background: rgba(9,19,58,0.08); position: relative" aria-hidden="true"><div style="position: absolute; left: 0; top: 0; bottom: 0; width: 44%; background: #D9A32B"></div></div>
             <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">44% committed</span><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Next: <span style="color: #09133A">Closing 30 Jan 2027</span></span></div>
           </div>
-        </div>
-<div class="pool-panel" id="pool-construction" hidden role="tabpanel" style="flex-direction: column; gap: 14px">
+            </div>
+          </article>
+          <article class="fac-card" data-fac-card aria-label="PCP-1 · Illinois School Solar" tabindex="-1">
+            <header style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 14px 20px; border-bottom: 1px solid rgba(9,19,58,0.10)">
+              <div style="display: flex; flex-direction: column; gap: 4px"><span style="font: 600 15px/1.25 Manrope, sans-serif; color: #09133A">PCP-1 · Illinois School Solar</span><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">[Construction Lending]</span></div>
+              <span class="pool-tab__status" style="margin-top: 3px"><i></i>Open</span>
+            </header>
+            <div style="padding: 16px 20px 18px; display: flex; flex-direction: column; gap: 14px">
           <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding: 4px 0 14px; border-bottom: 1px solid rgba(9,19,58,0.10)">
             <div style="display: flex; flex-direction: column; gap: 6px">
               <span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Target net yield</span>
@@ -664,8 +666,14 @@
             <div style="height: 6px; background: rgba(9,19,58,0.08); position: relative" aria-hidden="true"><div style="position: absolute; left: 0; top: 0; bottom: 0; width: 64%; background: #D9A32B"></div></div>
             <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">64% committed</span><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Next: <span style="color: #09133A">Closing 30 Nov 2026</span></span></div>
           </div>
-        </div>
-        <div class="pool-panel" id="pool-permanent" hidden role="tabpanel" style="flex-direction: column; gap: 14px">
+            </div>
+          </article>
+          <article class="fac-card" data-fac-card aria-label="Upstate Michigan Muni Solar Facilities" tabindex="-1">
+            <header style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 14px 20px; border-bottom: 1px solid rgba(9,19,58,0.10)">
+              <div style="display: flex; flex-direction: column; gap: 4px"><span style="font: 600 15px/1.25 Manrope, sans-serif; color: #09133A">Upstate Michigan Muni Solar Facilities</span><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">[Permanent Debt]</span></div>
+              <span class="pool-tab__status" style="margin-top: 3px"><i></i>Open</span>
+            </header>
+            <div style="padding: 16px 20px 18px; display: flex; flex-direction: column; gap: 14px">
           <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding: 4px 0 14px; border-bottom: 1px solid rgba(9,19,58,0.10)">
             <div style="display: flex; flex-direction: column; gap: 6px">
               <span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Target net yield</span>
@@ -688,7 +696,14 @@
             <div style="height: 6px; background: rgba(9,19,58,0.08); position: relative" aria-hidden="true"><div style="position: absolute; left: 0; top: 0; bottom: 0; width: 41%; background: #D9A32B"></div></div>
             <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">41% committed</span><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Next: <span style="color: #09133A">Interest 1 Nov 2026</span></span></div>
           </div>
+            </div>
+          </article>
         </div>
+        <div class="fac-controls">
+          <button class="fac-btn" type="button" data-fac-prev aria-label="Previous facility"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
+          <div class="fac-dots" data-fac-dots aria-hidden="true"><i class="is-active"></i><i></i><i></i></div>
+          <span class="fac-count" data-fac-count>01 / 03</span>
+          <button class="fac-btn" type="button" data-fac-next aria-label="Next facility"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
         </div>
       </div>
       <div style="flex: 0 1 660px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
@@ -791,6 +806,6 @@
   </footer>
 
 </div>
-<script src="script.js?v=19"></script>
+<script src="script.js?v=25"></script>
 </body>
 </html>

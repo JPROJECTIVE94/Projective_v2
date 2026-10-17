@@ -1,13 +1,6 @@
 // Projective Finance — site behaviour
 
 
-// Pool snapshot tabs
-document.querySelectorAll('.pool-tab').forEach(function (tab) {
-  tab.addEventListener('click', function () {
-    document.querySelectorAll('.pool-tab').forEach(function (t) { t.setAttribute('aria-selected', String(t === tab)); });
-    document.querySelectorAll('.pool-panel').forEach(function (p) { p.hidden = p.id !== tab.dataset.pool; });
-  });
-});
 
 // Flow: pinned three-step (scroll drives the active slide; tabs jump to a slide)
 (function () {
@@ -130,4 +123,35 @@ document.querySelectorAll('.pool-tab').forEach(function (tab) {
   if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { play(); return; }
   var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { play(); io.disconnect(); } }, { threshold: 0.4 });
   io.observe(el);
+})();
+
+// Capital structure snapshot: horizontal snap carousel
+(function () {
+  var track = document.querySelector('[data-fac-track]');
+  if (!track) return;
+  var cards = Array.prototype.slice.call(track.querySelectorAll('[data-fac-card]'));
+  var prev = document.querySelector('[data-fac-prev]'), next = document.querySelector('[data-fac-next]');
+  var dots = Array.prototype.slice.call(document.querySelectorAll('[data-fac-dots] i')), count = document.querySelector('[data-fac-count]');
+  var n = cards.length, idx = 0;
+  function step() { return cards[0].getBoundingClientRect().width + 16; }
+  function sync() {
+    var i = Math.round(track.scrollLeft / step()); i = Math.max(0, Math.min(n - 1, i));
+    if (i === idx) return; idx = i;
+    dots.forEach(function (d, k) { d.classList.toggle('is-active', k === i); });
+    if (count) count.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(n).padStart(2, '0');
+    if (prev) prev.disabled = i === 0; if (next) next.disabled = i === n - 1;
+  }
+  function go(i) { i = Math.max(0, Math.min(n - 1, i)); track.scrollTo({ left: i * step(), behavior: 'smooth' }); }
+  if (prev) { prev.disabled = true; prev.addEventListener('click', function () { go(idx - 1); }); }
+  if (next) next.addEventListener('click', function () { go(idx + 1); });
+  track.addEventListener('scroll', function () { window.requestAnimationFrame(sync); }, { passive: true });
+  track.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { e.preventDefault(); go(idx + 1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(idx - 1); } });
+  // mouse drag to scroll (touch and trackpads already scroll natively)
+  var down = false, startX = 0, startLeft = 0, moved = false;
+  track.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') return; down = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft; track.classList.add('is-dragging'); track.setPointerCapture(e.pointerId); });
+  track.addEventListener('pointermove', function (e) { if (!down) return; var dx = e.clientX - startX; if (Math.abs(dx) > 3) moved = true; track.scrollLeft = startLeft - dx; });
+  function up(e) { if (!down) return; down = false; track.classList.remove('is-dragging'); go(Math.round(track.scrollLeft / step())); }
+  track.addEventListener('pointerup', up); track.addEventListener('pointercancel', up);
+  track.addEventListener('click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+  window.addEventListener('resize', function () { track.scrollTo({ left: idx * step() }); });
 })();
