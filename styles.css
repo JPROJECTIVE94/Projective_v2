@@ -203,7 +203,7 @@ textarea.cf-input{resize:vertical;min-height:72px}
 .fac-track::-webkit-scrollbar{display:none}
 .fac-track.is-dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
 .fac-track:focus-visible{outline:2px solid #D9A32B;outline-offset:4px}
-.fac-card{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;background:#FFFFFF;border:1px solid rgba(9,19,58,0.14);box-sizing:border-box;user-select:none}
+.fac-card{flex:0 0 calc(100% - 40px);scroll-snap-align:start;scroll-snap-stop:always;background:#FFFFFF;border:1px solid rgba(9,19,58,0.14);box-sizing:border-box;user-select:none}
 .fac-controls{display:flex;align-items:center;gap:14px;padding:2px 2px 0}
 .fac-btn{appearance:none;width:36px;height:36px;border:1px solid rgba(9,19,58,.22);background:#FFFFFF;color:#09133A;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,background .2s,opacity .2s}
 .fac-btn:hover{border-color:#09133A}
@@ -215,3 +215,12 @@ textarea.cf-input{resize:vertical;min-height:72px}
 .fac-count{font:400 11px 'Space Mono',monospace;letter-spacing:.04em;color:#6B6F80;min-width:52px;text-align:right}
 @media (max-width:900px){.fac{flex-basis:auto !important;width:100%}}
 @media (prefers-reduced-motion:reduce){.fac-track{scroll-behavior:auto}}
+
+/* Carousel affordance: next card peeks, right edge fades, hint until first move */
+.fac-viewport{position:relative}
+.fac-viewport::after{content:"";position:absolute;top:0;right:-2px;bottom:0;width:56px;background:linear-gradient(90deg,rgba(247,247,245,0),#F7F7F5 85%);pointer-events:none;transition:opacity .3s}
+.fac-viewport.is-end::after{opacity:0}
+.fac-track{padding-right:40px}
+.fac-hint{font:400 11px 'Space Mono',monospace;letter-spacing:.04em;color:#09133A;transition:opacity .4s}
+.fac-hint.is-hidden{opacity:0}
+@media (max-width:900px){.fac-card{flex-basis:calc(100% - 32px)}.fac-hint{display:none}}

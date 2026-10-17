@@ -140,6 +140,8 @@
     dots.forEach(function (d, k) { d.classList.toggle('is-active', k === i); });
     if (count) count.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(n).padStart(2, '0');
     if (prev) prev.disabled = i === 0; if (next) next.disabled = i === n - 1;
+    var vp = document.querySelector('[data-fac-viewport]'); if (vp) vp.classList.toggle('is-end', i === n - 1);
+    var hint = document.querySelector('[data-fac-hint]'); if (hint && i > 0) hint.classList.add('is-hidden');
   }
   function go(i) { i = Math.max(0, Math.min(n - 1, i)); track.scrollTo({ left: i * step(), behavior: 'smooth' }); }
   if (prev) { prev.disabled = true; prev.addEventListener('click', function () { go(idx - 1); }); }
