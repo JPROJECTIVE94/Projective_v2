@@ -63,7 +63,7 @@ html{scroll-behavior:auto}
 @media (max-width:900px){.pool-card{flex-basis:auto !important;width:100%}}
 
 /* Flow: pinned three-step (Upload. Underwrite. Run.) */
-.flow{background:#FFFFFF;border-top:1px solid rgba(9,19,58,.10);position:relative;height:calc(100vh + 2 * 70vh)}
+.flow{background:#FFFFFF;border-top:1px solid rgba(9,19,58,.10);position:relative;height:calc(100vh + 2 * 45vh)}
 .flow__pin{position:sticky;top:0;height:100vh;min-height:720px;display:flex;flex-direction:column;gap:28px;padding:40px 0 32px;box-sizing:border-box;overflow:hidden}
 .flow__head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;width:100%}
 .flow__tabs{display:flex;border:1px solid rgba(9,19,58,.14);background:#FFFFFF}
@@ -74,7 +74,7 @@ html{scroll-behavior:auto}
 .flow__tab[aria-current="true"] i{background:#D9A32B}
 .flow__tab:focus-visible{outline:2px solid #D9A32B;outline-offset:-2px}
 .flow__viewport{flex:1;min-height:0;overflow:clip;contain:paint;padding:0 !important;max-width:1280px;width:calc(100% - 80px)}
-.flow__track{display:grid;grid-auto-flow:column;grid-auto-columns:100%;height:100%;transition:transform .7s cubic-bezier(.2,.7,.2,1);will-change:transform}
+.flow__track{display:grid;grid-auto-flow:column;grid-auto-columns:100%;height:100%;transition:transform .45s cubic-bezier(.2,.7,.2,1);will-change:transform}
 .flow__slide{display:grid;grid-template-columns:minmax(0,520px) minmax(0,1fr);gap:72px;align-items:center;height:100%;padding-right:8px;box-sizing:border-box}
 .flow__artwrap{position:relative;max-width:520px;width:100%}
 .flow__art{width:100%;height:auto;display:block}
@@ -85,7 +85,7 @@ html{scroll-behavior:auto}
 .flow__item{display:flex;flex-direction:column;gap:8px}
 .flow__item + .flow__item{border-left:1px solid rgba(9,19,58,.12);padding-left:28px}
 .flow__slide:not(.is-active) .flow__copy{opacity:.0;transform:translateY(10px)}
-.flow__copy{transition:opacity .6s cubic-bezier(.2,.7,.2,1) .25s,transform .6s cubic-bezier(.2,.7,.2,1) .25s}
+.flow__copy{transition:opacity .4s cubic-bezier(.2,.7,.2,1) .15s,transform .4s cubic-bezier(.2,.7,.2,1) .15s}
 @media (max-width:1100px){
   .flow__slide{grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:40px}
   .flow__copy h3{font-size:36px !important}

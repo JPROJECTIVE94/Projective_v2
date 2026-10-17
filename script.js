@@ -67,45 +67,56 @@
   zone.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files.length) { input.files = e.dataTransfer.files; render(); } });
 })();
 
-// Hero starfield: the dot grid, with each dot pulsing on its own phase
+// Hero starfield: the dot grid, each dot pulsing on its own phase (sprite-based, 30fps, cheap)
 (function () {
   var canvas = document.querySelector('[data-stars]');
   if (!canvas) return;
-  var ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d', { alpha: true });
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var GAP = 24, dots = [], w = 0, h = 0, dpr = 1, raf = 0, visible = true, t0 = performance.now();
+  var GAP = 24, dots = [], w = 0, h = 0, dpr = 1, raf = 0, visible = true, t0 = performance.now(), lastDraw = 0;
+  var sprites = {};
   function rand(seed) { var x = Math.sin(seed * 9999.7) * 10000; return x - Math.floor(x); }
+  function sprite(color, r) {
+    var key = color + r; if (sprites[key]) return sprites[key];
+    var s = document.createElement('canvas'); var px = Math.ceil(r * 2 * dpr) + 2; s.width = s.height = px;
+    var g = s.getContext('2d'); g.fillStyle = color; g.beginPath(); g.arc(px / 2, px / 2, r * dpr, 0, Math.PI * 2); g.fill();
+    sprites[key] = s; return s;
+  }
   function build() {
     var rect = canvas.parentElement.getBoundingClientRect();
-    dpr = Math.min(2, window.devicePixelRatio || 1);
+    dpr = Math.min(1.5, window.devicePixelRatio || 1); sprites = {};
     w = Math.max(1, Math.round(rect.width)); h = Math.max(1, Math.round(rect.height));
-    canvas.width = w * dpr; canvas.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
     dots = [];
     var cols = Math.ceil(w / GAP) + 1, rows = Math.ceil(h / GAP) + 1;
     for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
       var i = r * cols + c, a = rand(i + 1), b = rand(i + 7), d = rand(i + 13);
       var bright = a > 0.86, gold = d > 0.97;
-      dots.push({ x: c * GAP + 12, y: r * GAP + 12,
+      dots.push({ x: (c * GAP + 12) * dpr, y: (r * GAP + 12) * dpr,
         base: bright ? 0.30 : 0.06 + b * 0.06, amp: bright ? 0.70 : 0.30 + a * 0.15,
         speed: (bright ? 0.9 : 0.7) + b * 1.8, phase: d * Math.PI * 2,
-        size: bright ? 1.4 + a * 1.2 : 1.05, gold: gold });
+        size: bright ? 1.4 + a * 1.2 : 1.05, bright: bright, color: gold ? '#FFB726' : '#FFFFFF' });
     }
   }
   function draw(now) {
     var t = (now - t0) / 1000, k = reduce ? 0.4 : 1;
-    ctx.clearRect(0, 0, w, h);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (var n = 0; n < dots.length; n++) {
       var s = dots[n];
       var wave = 0.5 + 0.5 * Math.sin(t * s.speed + s.phase);
       var alpha = s.base + s.amp * k * wave;
-      var size = s.size > 1.3 ? s.size * (0.8 + 0.5 * wave) : s.size;
-      ctx.globalAlpha = Math.max(0, Math.min(1, alpha));
-      ctx.fillStyle = s.gold ? '#FFB726' : '#FFFFFF';
-      ctx.beginPath(); ctx.arc(s.x, s.y, size, 0, Math.PI * 2); ctx.fill();
+      var size = s.bright ? s.size * (0.8 + 0.5 * wave) : s.size;
+      var img = sprite(s.color, Math.round(size * 4) / 4);
+      ctx.globalAlpha = alpha > 1 ? 1 : (alpha < 0 ? 0 : alpha);
+      ctx.drawImage(img, s.x - img.width / 2, s.y - img.height / 2);
     }
     ctx.globalAlpha = 1;
   }
-  function loop(now) { if (!visible) { raf = 0; return; } draw(now); raf = requestAnimationFrame(loop); }
+  function loop(now) {
+    if (!visible) { raf = 0; return; }
+    if (now - lastDraw >= 32) { lastDraw = now; draw(now); }
+    raf = requestAnimationFrame(loop);
+  }
   function start() { if (!raf) raf = requestAnimationFrame(loop); }
   build(); draw(performance.now()); start();
   if ('IntersectionObserver' in window) {
