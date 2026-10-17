@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&amp;family=Outfit:wght@400;500&amp;family=Space+Mono:wght@400;700&amp;display=swap">
-  <link rel="stylesheet" href="styles.css?v=20">
+  <link rel="stylesheet" href="styles.css?v=24">
 </head>
 <body>
 <div style="font-family: Outfit, sans-serif; color: #14161A; background: #FFFFFF; width: 100%; min-height: 100%; box-sizing: border-box; display: flex; flex-direction: column">
@@ -608,15 +608,40 @@
     <div class="wrap stack-m" style="max-width: 1360px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; display: flex; gap: 72px; align-items: center; justify-content: space-between">
       <div class="pool-card" style="flex: 0 0 400px; background: #FFFFFF; border: 1px solid rgba(9,19,58,0.14); display: flex; flex-direction: column; box-sizing: border-box">
         <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid rgba(9,19,58,0.10)">
-          <span style="display: inline-flex; align-items: center; gap: 8px; font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A"><span aria-hidden="true" style="width: 7px; height: 7px; background: #D9A32B; display: inline-block"></span>Pool snapshot</span>
-          <span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">As of 14 Oct 2026 · Sample</span>
+          <span style="display: inline-flex; align-items: center; gap: 8px; font: 400 11px 'Space Mono', monospace; letter-spacing: 0.04em; color: #09133A"><span aria-hidden="true" style="width: 7px; height: 7px; background: #D9A32B; display: inline-block"></span>Projective Credit Facilities</span>
+          <span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">As of 17 Oct 2026</span>
         </div>
-        <div role="tablist" aria-label="Pools" style="display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid rgba(9,19,58,0.10)">
-          <button class="pool-tab" type="button" role="tab" aria-selected="true" aria-controls="pool-construction" data-pool="pool-construction">Construction Pool I<span class="pool-tab__status"><i></i>Open</span></button>
-          <button class="pool-tab" type="button" role="tab" aria-selected="false" aria-controls="pool-permanent" data-pool="pool-permanent">Permanent Pool I<span class="pool-tab__status"><i></i>Open</span></button>
+        <div role="tablist" aria-label="Pools" class="pool-tabs" style="display: flex; flex-direction: column; border-bottom: 1px solid rgba(9,19,58,0.10)">
+          <button class="pool-tab" type="button" role="tab" aria-selected="true" aria-controls="pool-development" data-pool="pool-development"><span class="pool-tab__name">Lone Star Compute Pool I <span class="pool-tab__tag">[Development Capital]</span></span><span class="pool-tab__status"><i></i>Open</span></button>
+          <button class="pool-tab" type="button" role="tab" aria-selected="false" aria-controls="pool-construction" data-pool="pool-construction"><span class="pool-tab__name">PCP-1 · Illinois School Solar <span class="pool-tab__tag">[Construction Lending]</span></span><span class="pool-tab__status"><i></i>Open</span></button>
+          <button class="pool-tab" type="button" role="tab" aria-selected="false" aria-controls="pool-permanent" data-pool="pool-permanent"><span class="pool-tab__name">Upstate Michigan Muni Solar Facilities <span class="pool-tab__tag">[Permanent Debt]</span></span><span class="pool-tab__status"><i></i>Open</span></button>
         </div>
         <div style="padding: 16px 20px 18px">
-        <div class="pool-panel" id="pool-construction" role="tabpanel" style="display: flex; flex-direction: column; gap: 14px">
+        <div class="pool-panel" id="pool-development" role="tabpanel" style="display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding: 4px 0 14px; border-bottom: 1px solid rgba(9,19,58,0.10)">
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Target net yield</span>
+              <span style="font: 600 44px/1 Manrope, sans-serif; letter-spacing: -0.03em; color: #09133A">18<span style="font-size: 0.5em; color: #D9A32B; margin-left: 2px">%</span></span>
+            </div>
+            <span style="font: 400 11px/1.4 Outfit, sans-serif; color: #6B6F80; text-align: right; max-width: 150px">Annualised, net of fees, paid at maturity</span>
+          </div>
+          <div style="display: flex; flex-direction: column">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0"><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Instrument</span><span style="font: 500 13px/1.35 Outfit, sans-serif; color: #09133A; text-align: right">Senior secured development loans</span></div>
+            <div style="border-top: 1px solid rgba(9,19,58,0.08); display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0"><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Seniority</span><span style="font: 500 13px/1.35 Outfit, sans-serif; color: #09133A; text-align: right">First lien · 100% of pool</span></div>
+            <div style="border-top: 1px solid rgba(9,19,58,0.08); display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0"><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Coupon</span><span style="font: 500 13px/1.35 Outfit, sans-serif; color: #09133A; text-align: right">Fixed · bullet at maturity</span></div>
+            <div style="border-top: 1px solid rgba(9,19,58,0.08); display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0"><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Tenor · Maturity</span><span style="font: 500 13px/1.35 Outfit, sans-serif; color: #09133A; text-align: right">18 months · Apr 2028</span></div>
+            <div style="border-top: 1px solid rgba(9,19,58,0.08); display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0"><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Collateral</span><span style="font: 500 13px/1.35 Outfit, sans-serif; color: #09133A; text-align: right">1 off-grid data center campus · 60 MW behind-the-meter · Texas</span></div>
+            <div style="border-top: 1px solid rgba(9,19,58,0.08); display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0"><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Advance rate</span><span style="font: 500 13px/1.35 Outfit, sans-serif; color: #09133A; text-align: right">≤ 50% of development budget · escrow-released on study milestones</span></div>
+            <div style="border-top: 1px solid rgba(9,19,58,0.08); display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0"><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Covenants</span><span style="font: 500 13px/1.35 Outfit, sans-serif; color: #09133A; text-align: right">Independent feasibility study by month 6 · land under contract · power supply LOI by month 9</span></div>
+            <div style="border-top: 1px solid rgba(9,19,58,0.08); display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0"><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Reporting</span><span style="font: 500 13px/1.35 Outfit, sans-serif; color: #09133A; text-align: right">Monthly reporting</span></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 1px solid rgba(9,19,58,0.10)">
+            <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Commitments</span><span style="font: 500 13px Outfit, sans-serif; color: #09133A">$1.1M <span style="color: #6B6F80">of $2.5M</span></span></div>
+            <div style="height: 6px; background: rgba(9,19,58,0.08); position: relative" aria-hidden="true"><div style="position: absolute; left: 0; top: 0; bottom: 0; width: 44%; background: #D9A32B"></div></div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">44% committed</span><span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Next: <span style="color: #09133A">Closing 30 Jan 2027</span></span></div>
+          </div>
+        </div>
+<div class="pool-panel" id="pool-construction" hidden role="tabpanel" style="flex-direction: column; gap: 14px">
           <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding: 4px 0 14px; border-bottom: 1px solid rgba(9,19,58,0.10)">
             <div style="display: flex; flex-direction: column; gap: 6px">
               <span style="font: 400 10px 'Space Mono', monospace; letter-spacing: 0.04em; color: #6B6F80">Target net yield</span>
