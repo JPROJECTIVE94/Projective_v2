@@ -69,8 +69,6 @@
     var want = pre === 'investor' || pre === 'lender' ? 'Lender' : pre === 'builder' || pre === 'developer' ? 'Builder' : null;
     var el = want && form.querySelector('input[name="role"][value="' + want + '"]');
     if (el) { el.checked = true; setRole(want); }
-    var fac = q.get('facility'), facEl = form.elements['facility'];
-    if (fac && facEl) { facEl.value = fac; }
   }
   var err = document.getElementById('cf-error'), thanks = document.getElementById('cf-thanks');
   form.addEventListener('submit', function (e) {
@@ -91,7 +89,7 @@
     var role = fd.get('role') || '', rec = fd.get('rec') || '';
     var files = form.elements.files && form.elements.files.files ? Array.prototype.map.call(form.elements.files.files, function (f) { return f.name; }) : [];
     var lines = ['Role: ' + role, 'Name: ' + v('name'), 'Company: ' + v('company'), 'Email: ' + v('email')];
-    if (roleKey(role) === 'investor') lines = lines.concat(['Investor type: ' + v('investorType'), 'Ticket size: ' + v('ticket'), 'Country: ' + v('country'), 'Facility: ' + v('facility')]);
+    if (roleKey(role) === 'investor') lines = lines.concat(['Investor type: ' + v('investorType'), 'Ticket size: ' + v('ticket'), 'Country: ' + v('country')]);
     else lines = lines.concat(['Project type: ' + v('projectType'), 'Project state: ' + v('state'), 'REC eligible: ' + rec, 'Capital need range: ' + v('capital')]);
     lines = lines.concat(['', v('notes'), '', files.length ? 'Documents to attach: ' + files.join(', ') : '']);
     window.location.href = 'mailto:hello@projective.finance?subject=' + encodeURIComponent((roleKey(role) === 'investor' ? 'Investor enquiry' : 'Project enquiry') + ' from ' + v('company')) + '&body=' + encodeURIComponent(lines.join('\n'));
