@@ -38,21 +38,64 @@
   update();
 })();
 
-// Contact form: validate, then hand off to the visitor's mail client with the details filled in
+// Contact form: role first, then only that role's fields; POST to FORM_ENDPOINT when set, else hand off to email
 (function () {
   var form = document.getElementById('contact-form');
   if (!form) return;
+  var FORM_ENDPOINT = ''; // e.g. 'https://formspree.io/f/xxxxxxxx' — until set, submissions open the visitor's email client
+  var COPY = {
+    builder: ['Get your project financed.', 'We fund infrastructure end to end, from development capital through perm debt. Qualifying projects get pooled and closed from our global network of qualified investors.'],
+    investor: ['Invest in Projective facilities.', 'Senior secured lending to solar, storage and municipal projects, from development capital to permanent debt. Tell us your mandate and we will send the term sheet.'],
+    other: ['Talk to Projective.', 'Tell us a little about what you need and we will route it to the right person.']
+  };
+  var title = document.querySelector('[data-cf-title]'), intro = document.querySelector('[data-cf-intro]');
+  var groups = { builder: form.querySelector('[data-cf-group="builder"]'), investor: form.querySelector('[data-cf-group="investor"]') };
+  var REQ = { builder: ['projectType', 'state', 'capital'], investor: ['investorType', 'ticket', 'country'] };
+  function roleKey(v) { return v === 'Investor' ? 'investor' : (v === 'Builder' || v === 'Municipality') ? 'builder' : 'other'; }
+  function setRole(v) {
+    var key = roleKey(v);
+    Object.keys(groups).forEach(function (g) {
+      var on = g === key; groups[g].hidden = !on;
+      REQ[g].forEach(function (n) { var el = form.elements[n]; if (el) el.required = on; });
+    });
+    var rec = form.querySelector('input[name="rec"][value="Yes"]'); if (rec) rec.required = key === 'builder';
+    var c = COPY[key];
+    if (title) title.innerHTML = c[0].replace(/\.$/, '') + '<span style="color: #D9A32B">.</span>';
+    if (intro) intro.textContent = c[1];
+  }
+  form.querySelectorAll('input[name="role"]').forEach(function (r) { r.addEventListener('change', function () { setRole(r.value); }); });
+  var q = new URLSearchParams(location.search), pre = q.get('role');
+  if (pre) {
+    var want = pre === 'investor' || pre === 'lender' ? 'Investor' : pre === 'builder' || pre === 'developer' ? 'Builder' : null;
+    var el = want && form.querySelector('input[name="role"][value="' + want + '"]');
+    if (el) { el.checked = true; setRole(want); }
+    var fac = q.get('facility'), facEl = form.elements['facility'];
+    if (fac && facEl) { facEl.value = fac; }
+  }
+  var err = document.getElementById('cf-error'), thanks = document.getElementById('cf-thanks');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var err = document.getElementById('cf-error');
     if (!form.checkValidity()) { err.hidden = false; var bad = form.querySelector(':invalid'); if (bad) bad.focus(); return; }
     err.hidden = true;
+    var fd = new FormData(form);
+    if (FORM_ENDPOINT) {
+      var btn = form.querySelector('button[type="submit"]'); if (btn) btn.disabled = true;
+      fetch(FORM_ENDPOINT, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }).then(function (r) {
+        if (!r.ok) throw new Error('send failed');
+        form.classList.add('is-sent'); thanks.hidden = false;
+        var a = document.querySelector('[data-cf-thanks-sent]'), b = document.querySelector('[data-cf-thanks-mail]'); if (a) a.hidden = false; if (b) b.hidden = true;
+      }).catch(function () { if (btn) btn.disabled = false; err.textContent = 'Something went wrong sending the form. Email hello@projective.finance instead.'; err.hidden = false; });
+      return;
+    }
     var v = function (n) { var el = form.elements[n]; return el ? (el.value || '').trim() : ''; };
-    var rec = form.querySelector('input[name="rec"]:checked'); var files = form.elements.files && form.elements.files.files ? Array.prototype.map.call(form.elements.files.files, function (f) { return f.name; }) : []; var lines = ['Name: ' + v('name'), 'Company: ' + v('company'), 'Email: ' + v('email'), 'I am a: ' + v('role'), 'Project type: ' + v('projectType'), 'Project state: ' + v('state'), 'REC eligible: ' + (rec ? rec.value : ''), 'Capital need range: ' + v('capital'), '', v('notes'), '', files.length ? 'Documents to attach: ' + files.join(', ') : ''];
-    var subject = 'Project enquiry from ' + v('company');
-    window.location.href = 'mailto:hello@projective.finance?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
-    form.classList.add('is-sent');
-    document.getElementById('cf-thanks').hidden = false;
+    var role = fd.get('role') || '', rec = fd.get('rec') || '';
+    var files = form.elements.files && form.elements.files.files ? Array.prototype.map.call(form.elements.files.files, function (f) { return f.name; }) : [];
+    var lines = ['Role: ' + role, 'Name: ' + v('name'), 'Company: ' + v('company'), 'Email: ' + v('email')];
+    if (roleKey(role) === 'investor') lines = lines.concat(['Investor type: ' + v('investorType'), 'Ticket size: ' + v('ticket'), 'Country: ' + v('country'), 'Facility: ' + v('facility')]);
+    else lines = lines.concat(['Project type: ' + v('projectType'), 'Project state: ' + v('state'), 'REC eligible: ' + rec, 'Capital need range: ' + v('capital')]);
+    lines = lines.concat(['', v('notes'), '', files.length ? 'Documents to attach: ' + files.join(', ') : '']);
+    window.location.href = 'mailto:hello@projective.finance?subject=' + encodeURIComponent((roleKey(role) === 'investor' ? 'Investor enquiry' : 'Project enquiry') + ' from ' + v('company')) + '&body=' + encodeURIComponent(lines.join('\n'));
+    form.classList.add('is-sent'); thanks.hidden = false;
   });
 })();
 
