@@ -255,7 +255,7 @@ textarea.cf-input{resize:vertical;min-height:72px}
 .cs-bar--bank-range{background:repeating-linear-gradient(135deg,rgba(9,19,58,.28) 0 6px,rgba(9,19,58,.08) 6px 12px);transition:width 1s cubic-bezier(.2,.7,.2,1) 2.1s;z-index:0}
 .cs-bar--bank{z-index:1}
 .cs-bar--proj{background:#0F6B3C;transition:width 1.6s cubic-bezier(.2,.7,.2,1) .3s}
-.cs-timeline.is-in .cs-bar--proj{width:8.33% !important}
+.cs-timeline.is-in .cs-bar--proj{width:16.67% !important}
 .cs-timeline.is-in .cs-bar--bank{width:66.67% !important}
 .cs-timeline.is-in .cs-bar--bank-range{width:100% !important}
 .cs-timeline:not(.is-in) .cs-bar{width:0 !important}
