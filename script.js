@@ -116,6 +116,7 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var GAP = 24, dots = [], w = 0, h = 0, dpr = 1, raf = 0, visible = true, t0 = performance.now(), lastDraw = 0;
   var sprites = {};
+  var SHOT_EVERY = 30000, shot = null, nextShotAt = performance.now() + 8000, ORANGE = '#FF9F1C';
   function rand(seed) { var x = Math.sin(seed * 9999.7) * 10000; return x - Math.floor(x); }
   function sprite(color, r) {
     var key = color + r; if (sprites[key]) return sprites[key];
@@ -151,11 +152,32 @@
       ctx.globalAlpha = alpha > 1 ? 1 : (alpha < 0 ? 0 : alpha);
       ctx.drawImage(img, s.x - img.width / 2, s.y - img.height / 2);
     }
+    if (shot) {
+      var p = (now - shot.t0) / shot.dur;
+      if (p >= 1) { shot = null; nextShotAt = now + SHOT_EVERY; }
+      else {
+        var head = sprite(ORANGE, 1.05), TRAIL = 9;
+        for (var q = TRAIL; q >= 0; q--) {
+          var pp = p - q * 0.022; if (pp < 0) continue;
+          var x = shot.x0 + (shot.x1 - shot.x0) * pp, y = shot.y0 + (shot.y1 - shot.y0) * pp;
+          ctx.globalAlpha = q === 0 ? 1 : (1 - q / (TRAIL + 1)) * 0.5;
+          ctx.drawImage(head, x - head.width / 2, y - head.height / 2);
+        }
+      }
+    }
     ctx.globalAlpha = 1;
+  }
+  function launchShot(now) {
+    // Enter just past the top edge, travel down and to the left until the dot leaves the canvas
+    var m = 12 * dpr, W = canvas.width, H = canvas.height, dx = -1, dy = 0.62;
+    var x0 = (0.45 + Math.random() * 0.65) * W, y0 = -m;
+    var len = Math.min((x0 + m) / -dx, (H + 2 * m) / dy);
+    shot = { t0: now, dur: Math.max(900, Math.min(2200, len / (0.6 * W) * 1000)), x0: x0, y0: y0, x1: x0 + dx * len, y1: y0 + dy * len };
   }
   function loop(now) {
     if (!visible) { raf = 0; return; }
-    if (now - lastDraw >= 32) { lastDraw = now; draw(now); }
+    if (!reduce && !shot && now >= nextShotAt) launchShot(now);
+    if (shot || now - lastDraw >= 32) { lastDraw = now; draw(now); }
     raf = requestAnimationFrame(loop);
   }
   function start() { if (!raf) raf = requestAnimationFrame(loop); }
