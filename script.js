@@ -108,15 +108,18 @@
   zone.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files.length) { input.files = e.dataTransfer.files; render(); } });
 })();
 
-// Hero starfield: the dot grid, each dot pulsing on its own phase (sprite-based, 30fps, cheap)
+// Starfields: every navy band carries a canvas of pulsing dots (sprite-based, 30fps, cheap).
+// A shooting star crosses all of them together: 3 seconds after load, then every 7 seconds.
 (function () {
-  var canvas = document.querySelector('[data-stars]');
-  if (!canvas) return;
+  var canvases = document.querySelectorAll('[data-stars]');
+  if (!canvases.length) return;
+  var SHOT_EVERY = 7000, SHOT_BASE = performance.now() + 3000, STREAK = 48, ORANGE = '#FF9F1C';
+  function field(canvas) {
   var ctx = canvas.getContext('2d', { alpha: true });
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var GAP = 24, dots = [], w = 0, h = 0, dpr = 1, raf = 0, visible = true, t0 = performance.now(), lastDraw = 0;
   var sprites = {};
-  var SHOT_EVERY = 7000, STREAK = 48, shot = null, nextShotAt = performance.now() + 3000, ORANGE = '#FF9F1C';
+  var shot = null, slotDone = -1;
   function rand(seed) { var x = Math.sin(seed * 9999.7) * 10000; return x - Math.floor(x); }
   function sprite(color, r) {
     var key = color + r; if (sprites[key]) return sprites[key];
@@ -154,7 +157,7 @@
     }
     if (shot) {
       var p = (now - shot.t0) / shot.dur;
-      if (p >= 1) { shot = null; nextShotAt = now + SHOT_EVERY; }
+      if (p >= 1) { shot = null; }
       else {
         var head = sprite(ORANGE, 1.05), r = 1.05 * dpr;
         var hx = shot.x0 + (shot.x1 - shot.x0) * p, hy = shot.y0 + (shot.y1 - shot.y0) * p;
@@ -179,7 +182,10 @@
   }
   function loop(now) {
     if (!visible) { raf = 0; return; }
-    if (!reduce && !shot && now >= nextShotAt) launchShot(now);
+    if (!reduce && !shot) {
+      var slot = Math.floor((now - SHOT_BASE) / SHOT_EVERY);
+      if (slot >= 0 && slot !== slotDone && now - (SHOT_BASE + slot * SHOT_EVERY) < 400) { slotDone = slot; launchShot(now); }
+    }
     if (shot || now - lastDraw >= 32) { lastDraw = now; draw(now); }
     raf = requestAnimationFrame(loop);
   }
@@ -190,6 +196,8 @@
   }
   document.addEventListener('visibilitychange', function () { if (!document.hidden) { visible = true; start(); } });
   var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { build(); draw(performance.now()); }, 150); });
+  }
+  Array.prototype.forEach.call(canvases, field);
 })();
 
 // Case study: play the timeline bars when the figure scrolls into view

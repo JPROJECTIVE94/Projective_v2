@@ -182,6 +182,7 @@ textarea.cf-input{resize:vertical;min-height:72px}
 
 /* Hero starfield: full width and dimmer on phones */
 @media (max-width:900px){.stars{width:100% !important;opacity:.5}}
+.stars-band{position:absolute;inset:0;z-index:-1;pointer-events:none}
 
 /* Case study timeline animation */
 .cs-bar{position:absolute;left:0;top:0;bottom:0;width:0}
