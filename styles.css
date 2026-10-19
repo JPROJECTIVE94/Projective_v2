@@ -264,3 +264,22 @@ textarea.cf-input{resize:vertical;min-height:72px}
 .cs-ticks span{position:absolute;top:6px;transform:translateX(-50%);font:400 12px 'Space Mono',monospace;color:#6B6F80}
 .cs-ticks span::before{content:"";position:absolute;left:50%;top:-7px;width:1px;height:6px;background:rgba(9,19,58,.25)}
 @media (max-width:900px){.cs-row__label{flex-basis:100% !important}.cs-ticks span{font-size:11px}}
+
+/* Comparison table: Projective vs a traditional lender */
+.cmp{border-top:1px solid rgba(9,19,58,.18)}
+.cmp-head,.cmp-row{display:grid;grid-template-columns:220px 1fr 72px 1fr;column-gap:24px;align-items:start}
+.cmp-head{padding:20px 0 16px;font:600 20px/1.2 Manrope,sans-serif;color:#09133A}
+.cmp-head > div:nth-child(2){color:#6B6F80;font-weight:500}
+.cmp-row{border-top:1px solid rgba(9,19,58,.12);padding:28px 0}
+.cmp-label{font:400 12px/1.5 'Space Mono',monospace;letter-spacing:.04em;color:#6B6F80;padding-top:6px}
+.cmp-cell{display:flex;gap:18px;align-items:flex-start;font:400 17px/1.5 Outfit,sans-serif;color:#4B5066}
+.cmp-cell svg{flex:0 0 36px;width:36px;height:36px;margin-top:-2px}
+.cmp-cell--proj{color:#09133A;font-weight:500}
+.cmp-arrow{display:flex;justify-content:center;padding-top:4px;color:rgba(9,19,58,.28)}
+.cmp-col{display:none}
+@media (max-width:900px){
+  .cmp-head,.cmp-arrow{display:none}
+  .cmp-row{grid-template-columns:1fr;row-gap:16px;padding:22px 0}
+  .cmp-label{padding-top:0}
+  .cmp-col{display:block;font:400 11px 'Space Mono',monospace;letter-spacing:.04em;color:#6B6F80;margin-bottom:4px}
+}
