@@ -116,7 +116,7 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var GAP = 24, dots = [], w = 0, h = 0, dpr = 1, raf = 0, visible = true, t0 = performance.now(), lastDraw = 0;
   var sprites = {};
-  var SHOT_EVERY = 30000, shot = null, nextShotAt = performance.now() + 8000, ORANGE = '#FF9F1C';
+  var SHOT_EVERY = 7000, STREAK = 48, shot = null, nextShotAt = performance.now() + 3000, ORANGE = '#FF9F1C';
   function rand(seed) { var x = Math.sin(seed * 9999.7) * 10000; return x - Math.floor(x); }
   function sprite(color, r) {
     var key = color + r; if (sprites[key]) return sprites[key];
@@ -156,13 +156,16 @@
       var p = (now - shot.t0) / shot.dur;
       if (p >= 1) { shot = null; nextShotAt = now + SHOT_EVERY; }
       else {
-        var head = sprite(ORANGE, 1.05), TRAIL = 9;
-        for (var q = TRAIL; q >= 0; q--) {
-          var pp = p - q * 0.022; if (pp < 0) continue;
-          var x = shot.x0 + (shot.x1 - shot.x0) * pp, y = shot.y0 + (shot.y1 - shot.y0) * pp;
-          ctx.globalAlpha = q === 0 ? 1 : (1 - q / (TRAIL + 1)) * 0.5;
-          ctx.drawImage(head, x - head.width / 2, y - head.height / 2);
-        }
+        var head = sprite(ORANGE, 1.05), r = 1.05 * dpr;
+        var hx = shot.x0 + (shot.x1 - shot.x0) * p, hy = shot.y0 + (shot.y1 - shot.y0) * p;
+        var L = Math.sqrt((shot.x1 - shot.x0) * (shot.x1 - shot.x0) + (shot.y1 - shot.y0) * (shot.y1 - shot.y0));
+        var ux = (shot.x0 - shot.x1) / L, uy = (shot.y0 - shot.y1) / L; // unit vector pointing back along the path
+        var tail = Math.min(STREAK * dpr, p * L), tx = hx + ux * tail, ty = hy + uy * tail;
+        var grad = ctx.createLinearGradient(hx, hy, tx, ty);
+        grad.addColorStop(0, 'rgba(255,159,28,0.9)'); grad.addColorStop(1, 'rgba(255,159,28,0)');
+        ctx.globalAlpha = 1; ctx.strokeStyle = grad; ctx.lineWidth = r * 2; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(hx, hy); ctx.lineTo(tx, ty); ctx.stroke();
+        ctx.drawImage(head, hx - head.width / 2, hy - head.height / 2);
       }
     }
     ctx.globalAlpha = 1;
