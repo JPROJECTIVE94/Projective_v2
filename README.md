@@ -39,3 +39,10 @@ Still needed from Projective:
 - The real ITC deadline date, to draw the dashed deadline line on the timeline (omitted until known).
 - One speed claim: 15 to 20 days is used site wide; the case study keeps the deal-specific "two weeks".
 - A form service URL for `FORM_ENDPOINT`.
+
+## Cache busting
+
+`styles.css` and `script.js` are linked with a `?v=N` query string on every page. Browsers cache them by URL,
+so after editing either file run `python3 tools/bump-version.py` (or `css` / `js`) before committing.
+A pre-commit hook (`.githooks/pre-commit`, enabled with `git config core.hooksPath .githooks`) refuses a commit
+where the file changed but the version did not, or where pages disagree on the version.

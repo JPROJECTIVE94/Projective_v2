@@ -1,0 +1,4 @@
+#!/bin/sh
+# Keep cache-busting versions in step with styles.css / script.js changes.
+python3 tools/check-versions.py || exit 1
+# If the bump tool edited pages during this commit, they must be staged too.

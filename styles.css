@@ -283,3 +283,7 @@ textarea.cf-input{resize:vertical;min-height:72px}
   .cmp-label{padding-top:0}
   .cmp-col{display:block;font:400 11px 'Space Mono',monospace;letter-spacing:.04em;color:#6B6F80;margin-bottom:4px}
 }
+
+/* Larger tap targets for small text links without changing layout */
+.fac-ts,footer a:not([aria-label]){position:relative}
+.fac-ts::after,footer a:not([aria-label])::after{content:"";position:absolute;left:0;right:0;top:-12px;bottom:-12px}
