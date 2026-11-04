@@ -45,7 +45,7 @@
   var FORM_ENDPOINT = ''; // e.g. 'https://formspree.io/f/xxxxxxxx' — until set, submissions open the visitor's email client
   var COPY = {
     builder: ['Get your project financed.', 'We fund infrastructure end to end, from development capital through perm debt. Qualifying projects get pooled and closed from our global network of qualified investors.'],
-    investor: ['Lend through Projective facilities.', 'Senior secured lending to solar, storage and municipal projects, from development capital to permanent debt. Tell us your mandate and we will send the term sheet.'],
+    investor: ['Lend through Projective.', 'Senior secured lending to solar, storage and municipal projects, from development capital to permanent debt. Tell us your mandate and we will send the term sheet.'],
     other: ['Talk to Projective.', 'Tell us a little about what you need and we will route it to the right person.']
   };
   var title = document.querySelector('[data-cf-title]'), intro = document.querySelector('[data-cf-intro]');
