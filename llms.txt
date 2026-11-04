@@ -1,0 +1,59 @@
+# Projective Finance
+
+> Projective Finance is a renewable energy lender in the United States. Builders upload project documents to Projective OS, Projective underwrites them against its credit standards, and deals that clear reach terms in 15 to 20 days and close in 3 to 6 weeks. Projective finances up to 100% of construction cost through a first lien senior facility, so builders keep full ownership. Qualified investors worldwide can lend into Projective pools.
+
+## What Projective offers
+
+- Development capital, construction loans and permanent debt for solar, battery storage and municipal renewable projects.
+- Capital needs from about $500,000 to $25 million and above.
+- No upfront equity from the builder. Up to 100% of construction cost financed.
+- Multi project pipelines financed through a single vehicle on one ledger: one close, one set of fees.
+- Loan servicing on Projective OS: every repayment, covenant and report on one ledger, visible to lenders for the life of the loan.
+- Interest paid monthly on a fixed schedule.
+
+## For investors
+
+- Open to qualified investors worldwide: individuals, family offices, funds and institutions.
+- Open an account from anywhere, fund in any currency, choose a position from development capital to permanent debt.
+- Interest monthly or at maturity. Every position recorded on one auditable ledger.
+- Availability subject to eligibility and local regulations. Nothing on the site is an offer to sell or a solicitation of an offer to buy any security.
+
+## Pages
+
+- [Home](https://www.projective.finance/): Projective OS, how a project gets financed (documentation, underwriting, loan servicing), why Projective, Projective vs a traditional lender, open facilities, common questions.
+- [Case study: Econergy](https://www.projective.finance/case-study.html): Illinois school solar. $12 million of construction capital, committed four weeks after upload, 100% of construction financed, State of Illinois guarantor.
+- [Contact](https://www.projective.finance/contact.html): contact form for builders and investors. Email hello@projective.finance. Replies within one business day.
+- Book a call: https://calendly.com/josh-projective/new-meeting
+
+## Common questions
+
+### What does Projective finance?
+
+Projective lends to renewable energy projects in the United States: commercial and community solar, battery storage and municipal projects such as schools and hospitals. We offer development capital, construction loans and permanent debt, with capital needs from about $500,000 to $25 million and above.
+
+### How quickly can a project get financed?
+
+A builder uploads the project documents to Projective OS. A deal that clears our underwriting standards reaches terms in 15 to 20 days and closes in 3 to 6 weeks. In our Econergy case study, capital was committed four weeks after upload.
+
+### Does the builder need to put in equity?
+
+No upfront capital is required. Projective provides a first lien senior construction facility covering up to 100% of construction cost, so the builder keeps full ownership of the project and the full return.
+
+### How does underwriting work on Projective?
+
+Projective OS reads every document, pulls out the terms that matter and tests each one against policy: offtake tenor against loan term, site control, interconnection status and debt service coverage at base and downside cases. An underwriter reviews the result and nothing moves without a human sign off. Every check is written down.
+
+### Who can invest in a Projective pool?
+
+Qualified investors worldwide, including individuals, family offices, funds and institutions. Investors open an account, fund in any currency and choose a position from development capital through construction lending to permanent debt, with interest paid monthly or at maturity. Availability is subject to eligibility and local regulations.
+
+### Where is Projective based and how do I get in touch?
+
+Projective Finance LLC is based in Wyoming, United States. Email hello@projective.finance, use the contact form, or book a call. We reply within one business day.
+
+## Company
+
+- Legal name: Projective Finance LLC
+- Location: Wyoming, United States
+- Email: hello@projective.finance
+- Website: https://www.projective.finance
