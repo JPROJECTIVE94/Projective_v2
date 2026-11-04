@@ -51,7 +51,7 @@
   var title = document.querySelector('[data-cf-title]'), intro = document.querySelector('[data-cf-intro]');
   var groups = { builder: form.querySelector('[data-cf-group="builder"]'), investor: form.querySelector('[data-cf-group="investor"]') };
   var REQ = { builder: ['projectType', 'state', 'capital'], investor: ['investorType', 'ticket', 'country'] };
-  function roleKey(v) { return v === 'Lender' ? 'investor' : v === 'Builder' ? 'builder' : 'other'; }
+  function roleKey(v) { return v === 'Investor' ? 'investor' : v === 'Builder' ? 'builder' : 'other'; }
   function setRole(v) {
     var key = roleKey(v);
     Object.keys(groups).forEach(function (g) {
@@ -66,7 +66,7 @@
   form.querySelectorAll('input[name="role"]').forEach(function (r) { r.addEventListener('change', function () { setRole(r.value); }); });
   var q = new URLSearchParams(location.search), pre = q.get('role');
   if (pre) {
-    var want = pre === 'investor' || pre === 'lender' ? 'Lender' : pre === 'builder' || pre === 'developer' ? 'Builder' : null;
+    var want = pre === 'investor' || pre === 'lender' ? 'Investor' : pre === 'builder' || pre === 'developer' ? 'Builder' : null;
     var el = want && form.querySelector('input[name="role"][value="' + want + '"]');
     if (el) { el.checked = true; setRole(want); }
   }
