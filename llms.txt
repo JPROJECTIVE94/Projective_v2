@@ -8,6 +8,7 @@
 - Capital needs from about $500,000 to $25 million and above.
 - No upfront equity from the builder. Up to 100% of construction cost financed.
 - Multi project pipelines financed through a single vehicle on one ledger: one close, one set of fees.
+- Investor CRM on Projective OS: builders manage their investors directly on Projective, with commitments, contact history, documents and distributions beside each deal.
 - Loan servicing on Projective OS: every repayment, covenant and report on one ledger, visible to lenders for the life of the loan.
 - Interest paid monthly on a fixed schedule.
 
