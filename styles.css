@@ -358,3 +358,34 @@ a[aria-label="Projective home"] img{width:130px;height:26px}
   .crm{box-shadow:0 16px 36px rgba(9,19,58,.10)}
   #crm .wrap{gap:36px !important}
 }
+
+/* Lenders page */
+.lstat{padding:28px 32px 28px 0;border-left:1px solid rgba(9,19,58,.10);padding-left:32px;display:flex;flex-direction:column;gap:8px}
+.lstat:first-child{border-left:0;padding-left:0}
+.lstat__k{font:400 12px 'Space Mono',monospace;letter-spacing:.04em;color:#6B6F80}
+.lstat__v{font:600 18px/1.3 Manrope,sans-serif;color:#09133A}
+.lcol{padding:28px 32px 0 0;display:flex;flex-direction:column;gap:10px;border-left:1px solid rgba(9,19,58,.12);padding-left:32px}
+.lcol:first-child{border-left:0;padding-left:0}
+.lcard{background:#FFFFFF;border:1px solid rgba(9,19,58,.12);padding:22px 24px;display:flex;flex-direction:column;gap:8px}
+.lcard__t{font:600 17px/1.3 Manrope,sans-serif;color:#09133A}
+.lcard p{margin:0;font:400 15px/1.55 Outfit,sans-serif;color:#4B5066}
+.ldisc__filters{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.ldisc__filters span{font:400 10px 'Space Mono',monospace;letter-spacing:.04em;color:#09133A;border:1px solid rgba(9,19,58,.14);border-radius:4px;padding:5px 8px;background:#F7F7F5;white-space:nowrap}
+.ldisc__cols,.ldisc__row{grid-template-columns:minmax(0,1.5fr) minmax(0,1.3fr) 80px 96px 86px}
+.ldisc__tag{font:400 10px 'Space Mono',monospace;letter-spacing:.04em;color:#4B5066;background:#F0F0ED;padding:3px 8px;border-radius:3px;justify-self:end;white-space:nowrap}
+.ldisc__tag.is-open{color:#0F6B3C;background:#E6F4EC}
+.ldisc__tag.is-review{color:#8A5A00;background:#FFF5DD}
+@media (max-width:900px){
+  .lstat{border-left:0;padding:18px 0;border-top:1px solid rgba(9,19,58,.10)}
+  .lstat:first-child{border-top:0}
+  .lcol{border-left:0;padding:22px 0 0;border-top:1px solid rgba(9,19,58,.12)}
+  .lcol:first-child{border-top:0;padding-top:28px}
+  .ldisc__filters{display:none}
+  .ldisc__cols > :nth-child(2),.ldisc__cols > :nth-child(3){display:none}
+  .ldisc__cols{grid-template-columns:minmax(0,1fr) auto}
+  .ldisc__row{grid-template-columns:minmax(0,1fr) auto auto;grid-template-rows:auto auto}
+  .ldisc__row .crm__cell-proj{display:block;grid-column:1;grid-row:2;white-space:normal;overflow:visible;text-overflow:clip;font-size:11px;line-height:1.3}
+  .ldisc__row .crm__cell-loc{display:none}
+  .ldisc__row .crm__cell-sum{grid-column:2;grid-row:1 / span 2}
+  .ldisc__row .ldisc__tag{grid-column:3;grid-row:1 / span 2;align-self:center}
+}

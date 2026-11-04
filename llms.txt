@@ -1,6 +1,6 @@
 # Projective Finance
 
-> Projective Finance is a renewable energy lender in the United States. Builders upload project documents to Projective OS, Projective underwrites them against its credit standards, and deals that clear reach terms in 15 to 20 days and close in 3 to 6 weeks. Projective finances up to 100% of construction cost through a first lien senior facility, so builders keep full ownership. Qualified investors worldwide can lend into Projective pools.
+> Projective Finance is a renewable energy lender in the United States. Builders upload project documents to Projective OS, Projective underwrites them against its credit standards, and deals that clear reach terms in 15 to 20 days and close in 3 to 6 weeks. Projective finances up to 100% of construction cost through a first lien senior facility, so builders keep full ownership. Qualified investors worldwide can lend into Projective investment pools.
 
 ## What Projective offers
 
@@ -22,6 +22,7 @@
 ## Pages
 
 - [Home](https://www.projective.finance/): Projective OS, how a project gets financed (documentation, underwriting, loan servicing), why Projective, Projective vs a traditional lender, open facilities, common questions.
+- [For lenders](https://www.projective.finance/lenders.html): the curated access point for American infrastructure deals. Screened, compliant, middle market deal flow backed by municipal and public offtake, with discovery and portfolio management on one ledger. Request access through the contact form.
 - [Case study: Econergy](https://www.projective.finance/case-study.html): Illinois school solar. $12 million of construction capital, committed four weeks after upload, 100% of construction financed, State of Illinois guarantor.
 - [Contact](https://www.projective.finance/contact.html): contact form for builders and investors. Email hello@projective.finance. Replies within one business day.
 - Book a call: https://calendly.com/josh-projective/new-meeting
@@ -40,7 +41,7 @@ Often not. For projects with investment-grade municipal or utility offtake, Proj
 
 Projective OS reads every document, pulls out the terms that matter and tests each one against policy: offtake tenor against loan term, site control, interconnection status and debt service coverage at base and downside cases. An underwriter reviews the result and nothing moves without a human sign off. Every check is written down.
 
-### Who can invest in a Projective pool?
+### Who can invest in a Projective investment pool?
 
 Qualified investors worldwide, including individuals, family offices, funds and institutions. Investors open an account, fund in any currency and choose a position from development capital through construction lending to permanent debt, with interest paid monthly or at maturity. Availability is subject to eligibility and local regulations.
 
