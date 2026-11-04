@@ -242,3 +242,16 @@
   track.addEventListener('click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
   window.addEventListener('resize', function () { track.scrollTo({ left: idx * step() }); });
 })();
+
+// Projective OS mockup: on phones, scale the 720px laptop screen down to fit instead of cropping it
+(function () {
+  var scroll = document.querySelector('.laptop-scroll'), inner = document.querySelector('.laptop-inner');
+  if (!scroll || !inner) return;
+  function fit() {
+    if (window.innerWidth > 900) { inner.style.transform = ''; scroll.style.height = ''; return; }
+    var k = scroll.clientWidth / 720;
+    inner.style.transform = 'scale(' + k + ')';
+    scroll.style.height = Math.round(inner.offsetHeight * k) + 'px';
+  }
+  fit(); window.addEventListener('resize', fit); window.addEventListener('load', fit);
+})();
