@@ -47,10 +47,6 @@ Projective OS reads every document, pulls out the terms that matter and tests ea
 
 Qualified investors worldwide, including individuals, family offices, funds and institutions. Investors open an account, fund in any currency and choose a position from development capital through construction lending to permanent debt, with interest paid monthly or at maturity. Availability is subject to eligibility and local regulations.
 
-### Where is Projective based and how do I get in touch?
-
-Projective Finance LLC is based in Wyoming, United States. Email hello@projective.finance, use the contact form, or book a call. We reply within one business day.
-
 ## Company
 
 - Legal name: Projective Finance LLC
