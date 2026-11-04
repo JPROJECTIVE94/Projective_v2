@@ -329,16 +329,15 @@ a[aria-label="Projective home"] img{width:130px;height:26px}
 .crm__title{font:600 20px/1.1 Manrope,sans-serif;letter-spacing:-.02em;color:#09133A}
 .crm__sub{font:400 12px Outfit,sans-serif;color:#4B5066;margin-top:4px}
 .crm__search{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(9,19,58,.14);border-radius:4px;padding:7px 12px;font:400 11px Outfit,sans-serif;color:#6B6F80;background:#F7F7F5;white-space:nowrap}
-.crm__cols,.crm__row{display:grid;grid-template-columns:24px minmax(0,1.6fr) minmax(0,1fr) auto 20px;gap:12px;align-items:center}
-.crm__cols{grid-template-columns:36px minmax(0,1.6fr) minmax(0,1fr) auto 20px;padding:0 12px;font:400 10px 'Space Mono',monospace;letter-spacing:.04em;color:#6B6F80}
-.crm__cols > :first-child{grid-column:1 / span 2}
-.crm__sort{display:inline-flex;align-items:center;gap:5px;color:#09133A;justify-self:end}
+.crm__cols,.crm__row{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) 72px 104px 20px;gap:12px;align-items:center}
+.crm__cols{padding:0 12px;font:400 10px 'Space Mono',monospace;letter-spacing:.04em;color:#6B6F80}
+.crm__sort{display:inline-flex;align-items:center;gap:5px;color:#09133A;justify-self:end;white-space:nowrap}
 .crm__rows{display:flex;flex-direction:column;border:1px solid rgba(9,19,58,.10);border-radius:6px;overflow:hidden}
 .crm__row{padding:9px 12px;border-top:1px solid rgba(9,19,58,.06);font:400 12px Outfit,sans-serif}
 .crm__row:first-child{border-top:0}
 .crm__row:nth-child(even){background:#FBFAF7}
 .crm__cell-name{font-weight:500;color:#09133A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.crm__cell-proj{color:#4B5066;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.crm__cell-proj,.crm__cell-loc{color:#4B5066;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .crm__cell-sum{font:400 11px 'Space Mono',monospace;color:#09133A;white-space:nowrap;justify-self:end}
 .crm__more{width:16px;height:16px;justify-self:end;background:radial-gradient(circle,#4B5066 1.2px,transparent 1.4px) center/5px 5px repeat-y;background-position:center;opacity:.8}
 .crm__pages{display:flex;justify-content:center;gap:6px;padding-top:4px}
@@ -349,8 +348,7 @@ a[aria-label="Projective home"] img{width:130px;height:26px}
   .crm__side{display:none}
   .crm__tabs{display:none}
   .crm__cols > :nth-child(2),.crm__cell-proj{display:none}
-  .crm__cols,.crm__row{grid-template-columns:24px minmax(0,1fr) auto 20px}
-  .crm__cols{grid-template-columns:36px minmax(0,1fr) auto 20px}
+  .crm__cols,.crm__row{grid-template-columns:minmax(0,1fr) 60px 100px 20px}
   .crm__main{padding:14px 12px 12px}
   #crm .wrap{gap:36px !important}
 }
