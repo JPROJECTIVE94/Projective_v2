@@ -46,3 +46,11 @@ Still needed from Projective:
 so after editing either file run `python3 tools/bump-version.py` (or `css` / `js`) before committing.
 A pre-commit hook (`.githooks/pre-commit`, enabled with `git config core.hooksPath .githooks`) refuses a commit
 where the file changed but the version did not, or where pages disagree on the version.
+
+## Contact form
+
+Submissions post to `api/contact.js`, a Vercel function. Each one is stored in the private Blob store `projective-contact-uploads` under `submissions/<timestamp>-<company>/` as `submission.json` plus the attached files. Browse them in the Vercel dashboard: project `projectivev2` → Storage → `projective-contact-uploads`.
+
+Email notification with the files attached is sent through Resend when these environment variables exist on the project: `RESEND_API_KEY` (required), `CONTACT_FROM` (a sender on a domain verified in Resend, defaults to `onboarding@resend.dev`) and `CONTACT_TO` (defaults to `hello@projective.finance`).
+
+Attachments are limited to 4 MB per submission by the function body limit. The form checks this before sending.

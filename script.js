@@ -42,7 +42,7 @@
 (function () {
   var form = document.getElementById('contact-form');
   if (!form) return;
-  var FORM_ENDPOINT = ''; // e.g. 'https://formspree.io/f/xxxxxxxx' — until set, submissions open the visitor's email client
+  var FORM_ENDPOINT = '/api/contact'; // Vercel function in api/contact.js. Set to '' to fall back to the visitor's email client
   var COPY = {
     builder: ['Get your project financed.', 'We fund infrastructure end to end, from development capital through perm debt. Qualifying projects get pooled and closed from our global network of qualified investors.'],
     investor: ['Lend through Projective.', 'Senior secured lending to solar, storage and municipal projects, from development capital to permanent debt. Tell us your mandate and we will send the term sheet.'],
@@ -77,6 +77,9 @@
     err.hidden = true;
     var fd = new FormData(form);
     if (FORM_ENDPOINT) {
+      var picked = form.elements.files && form.elements.files.files ? form.elements.files.files : [];
+      var total = 0; for (var i = 0; i < picked.length; i++) total += picked[i].size;
+      if (total > 4 * 1024 * 1024) { err.textContent = 'Attachments are limited to 4 MB in total. Submit without them and email larger files to hello@projective.finance.'; err.hidden = false; return; }
       var btn = form.querySelector('button[type="submit"]'); if (btn) btn.disabled = true;
       fetch(FORM_ENDPOINT, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }).then(function (r) {
         if (!r.ok) throw new Error('send failed');
