@@ -53,4 +53,4 @@ Submissions post to `api/contact.js`, a Vercel function. Each one is stored in t
 
 Email notification with the files attached is sent through Resend when these environment variables exist on the project: `RESEND_API_KEY` (required), `CONTACT_FROM` (a sender on a domain verified in Resend, defaults to `onboarding@resend.dev`) and `CONTACT_TO` (defaults to `hello@projective.finance`).
 
-Attachments are limited to 4 MB per submission by the function body limit. The form checks this before sending.
+Attachments upload straight from the browser into the Blob store through `api/upload.js` (client tokens from `@vercel/blob/client`, bundled into `assets/blob-client.js` by `npm run bundle:blob`), so each file can be up to 50 MB. If that bundle fails to load the form falls back to posting files in the request body, limited to 4 MB.

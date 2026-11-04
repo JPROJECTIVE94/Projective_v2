@@ -1,7 +1,8 @@
 // Contact form endpoint. Stores every submission (fields + attached files) in the
+// Attachments normally arrive already uploaded by the browser (api/upload.js); small ones may still come in the body.
 // project's private Vercel Blob store under submissions/<timestamp>-<company>/,
 // and emails hello@projective.finance with the files attached when RESEND_API_KEY is set.
-import { put } from '@vercel/blob';
+import { put, get } from '@vercel/blob';
 
 const MAX_TOTAL_BYTES = 4 * 1024 * 1024; // Vercel function request body limit is 4.5 MB
 const TO = process.env.CONTACT_TO || 'hello@projective.finance';
@@ -29,10 +30,20 @@ export async function POST(request) {
   const total = files.reduce((n, f) => n + f.size, 0);
   if (total > MAX_TOTAL_BYTES) return Response.json({ ok: false, error: 'Attachments too large' }, { status: 413 });
 
+  // Files the browser already uploaded straight to Blob (see api/upload.js) arrive as JSON in `uploaded`,
+  // and the browser tells us the folder it used so everything for one submission sits together.
+  let uploaded = [];
+  try { uploaded = JSON.parse(fields.uploaded || '[]'); } catch { uploaded = []; }
+  delete fields.uploaded;
   const receivedAt = new Date().toISOString();
-  const folder = `submissions/${receivedAt.replace(/[:.]/g, '-')}-${slug(company)}/`;
+  const clientFolder = clean(form.get('folder'));
+  delete fields.folder;
+  const folder = /^submissions\/\d{4}-\d{2}-\d{2}T[\d-]+Z-[a-z0-9-]{1,40}\/$/.test(clientFolder) ? clientFolder : `submissions/${receivedAt.replace(/[:.]/g, '-')}-${slug(company)}/`;
 
   const stored = [];
+  for (const u of uploaded) {
+    if (u && typeof u.pathname === 'string' && u.pathname.startsWith(folder)) stored.push({ name: clean(u.name), size: Number(u.size) || 0, type: clean(u.type), pathname: u.pathname, url: clean(u.url) });
+  }
   for (const f of files) {
     const blob = await put(folder + safeName(f.name), f, { access: 'private', addRandomSuffix: false, contentType: f.type || 'application/octet-stream' });
     stored.push({ name: f.name, size: f.size, type: f.type, pathname: blob.pathname, url: blob.url });
@@ -47,6 +58,12 @@ export async function POST(request) {
       const rows = order.filter((k) => fields[k]).map((k) => `<tr><td style="padding:4px 12px 4px 0;color:#6B6F80">${esc(k)}</td><td style="padding:4px 0">${esc(fields[k]).replace(/\n/g, '<br>')}</td></tr>`).join('');
       const fileList = stored.length ? `<p><strong>Attached files</strong></p><ul>${stored.map((f) => `<li>${esc(f.name)} (${Math.round(f.size / 1024)} KB)</li>`).join('')}</ul>` : '<p>No files attached.</p>';
       const attachments = await Promise.all(files.map(async (f) => ({ filename: safeName(f.name), content: Buffer.from(await f.arrayBuffer()).toString('base64') })));
+      let budget = 20 * 1024 * 1024 - total;
+      for (const u of stored.filter((x) => !files.some((f) => folder + safeName(f.name) === x.pathname))) {
+        if (u.size > budget) continue;
+        const r = await get(u.pathname, { access: 'private' });
+        if (r && r.statusCode === 200) { attachments.push({ filename: safeName(u.name), content: Buffer.from(await new Response(r.stream).arrayBuffer()).toString('base64') }); budget -= u.size; }
+      }
       const subject = `${role === 'Investor' ? 'Investor enquiry' : 'Project enquiry'} from ${company}`;
       const res = await fetch('https://api.resend.com/emails', {
         method: 'POST',

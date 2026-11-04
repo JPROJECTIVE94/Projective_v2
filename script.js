@@ -77,15 +77,33 @@
     err.hidden = true;
     var fd = new FormData(form);
     if (FORM_ENDPOINT) {
-      var picked = form.elements.files && form.elements.files.files ? form.elements.files.files : [];
-      var total = 0; for (var i = 0; i < picked.length; i++) total += picked[i].size;
-      if (total > 4 * 1024 * 1024) { err.textContent = 'Attachments are limited to 4 MB in total. Submit without them and email larger files to hello@projective.finance.'; err.hidden = false; return; }
-      var btn = form.querySelector('button[type="submit"]'); if (btn) btn.disabled = true;
-      fetch(FORM_ENDPOINT, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }).then(function (r) {
+      var picked = form.elements.files && form.elements.files.files ? Array.prototype.slice.call(form.elements.files.files) : [];
+      var total = 0; picked.forEach(function (f) { total += f.size; });
+      var MAX_FILE = 50 * 1024 * 1024, direct = !!(window.VercelBlobClient && window.VercelBlobClient.upload);
+      if (direct && picked.some(function (f) { return f.size > MAX_FILE; })) { err.textContent = 'Each file is limited to 50 MB. Email larger files to hello@projective.finance.'; err.hidden = false; return; }
+      if (!direct && total > 4 * 1024 * 1024) { err.textContent = 'Attachments are limited to 4 MB in total. Submit without them and email larger files to hello@projective.finance.'; err.hidden = false; return; }
+      var btn = form.querySelector('button[type="submit"]'), btnText = btn ? btn.innerHTML : '';
+      if (btn) { btn.disabled = true; btn.textContent = picked.length ? 'Uploading…' : 'Sending…'; }
+      var fail = function (msg) { if (btn) { btn.disabled = false; btn.innerHTML = btnText; } err.textContent = msg || 'Something went wrong sending the form. Email hello@projective.finance instead.'; err.hidden = false; };
+      var company = (fd.get('company') || '').toString().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'unknown';
+      var folder = 'submissions/' + new Date().toISOString().replace(/[:.]/g, '-') + '-' + company + '/';
+      var safe = function (n) { return n.replace(/[\/\\]/g, '_').replace(/[^\w.\- ()]/g, '').slice(0, 120) || 'file'; };
+      var uploads = direct ? picked.reduce(function (p, f, i) {
+        return p.then(function (list) {
+          if (btn) btn.textContent = 'Uploading ' + (i + 1) + ' of ' + picked.length + '…';
+          return window.VercelBlobClient.upload(folder + safe(f.name), f, { access: 'private', handleUploadUrl: '/api/upload', contentType: f.type || 'application/octet-stream', multipart: f.size > 8 * 1024 * 1024 })
+            .then(function (b) { list.push({ name: f.name, size: f.size, type: f.type, pathname: b.pathname, url: b.url }); return list; });
+        });
+      }, Promise.resolve([])) : Promise.resolve(null);
+      uploads.then(function (list) {
+        if (list) { fd.delete('files'); fd.set('uploaded', JSON.stringify(list)); fd.set('folder', folder); }
+        if (btn) btn.textContent = 'Sending…';
+        return fetch(FORM_ENDPOINT, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
+      }).then(function (r) {
         if (!r.ok) throw new Error('send failed');
         form.classList.add('is-sent'); thanks.hidden = false;
         var a = document.querySelector('[data-cf-thanks-sent]'), b = document.querySelector('[data-cf-thanks-mail]'); if (a) a.hidden = false; if (b) b.hidden = true;
-      }).catch(function () { if (btn) btn.disabled = false; err.textContent = 'Something went wrong sending the form. Email hello@projective.finance instead.'; err.hidden = false; });
+      }).catch(function (e) { fail(e && /size|type|Invalid|refused/i.test(e.message) ? 'One of the files could not be uploaded (' + e.message + '). Remove it and try again, or email it to hello@projective.finance.' : ''); });
       return;
     }
     var v = function (n) { var el = form.elements[n]; return el ? (el.value || '').trim() : ''; };
