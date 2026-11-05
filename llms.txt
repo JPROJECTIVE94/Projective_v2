@@ -29,27 +29,27 @@
 
 ## Common questions
 
-### What does Projective finance?
+### What types of projects does Projective finance?
 
 Projective lends to renewable energy projects in the United States: commercial and community solar, battery storage and municipal projects such as schools. We offer development capital, construction loans and permanent debt, with capital needs from about $500,000 to $25 million.
 
-### Does the builder need to put in equity?
+### What are the sponsor equity requirements?
 
 Often not. For projects with investment-grade municipal or utility offtake, Projective can fund up to 100% of construction cost through a senior first-lien facility. The builder keeps full ownership and the full project economics after debt service. Advance rates depend on offtaker credit, contract structure, and track record.
 
-### How does underwriting work on Projective?
+### How are projects evaluated and underwritten?
 
 Projective OS reads every document, pulls out the terms that matter and tests each one against policy: offtake tenor against loan term, site control, interconnection status and debt service coverage at base and downside cases. An underwriter reviews the result and nothing moves without a human sign off. Every check is written down.
 
-### Who can invest in a Projective investment pool?
+### Who is eligible to invest?
 
 Qualified investors worldwide, including individuals, family offices, funds and institutions. Investors open an account, fund in any currency and choose a position from development capital through construction lending to permanent debt, with interest paid monthly or at maturity. Availability is subject to eligibility and local regulations.
 
-### How does Projective handle state-level RECs and tax credits?
+### How are renewable energy incentives incorporated into financing?
 
 We handle it. Projective packages RECs and other state and federal tax credits and sells them through our network of brokerage partners, so the builder never has to source buyers or manage filings. Every transaction is executed in full compliance with the relevant state and federal agencies.
 
-### Why does Projective focus on municipal credit?
+### Why does Projective prioritize municipal-backed projects?
 
 Projects backed by municipal or public offtake carry rated, often state-guaranteed credit. Underwriting against that credit rather than a developer’s balance sheet lets us move faster, offer higher advance rates, and place the paper with institutional lenders more efficiently.
 
