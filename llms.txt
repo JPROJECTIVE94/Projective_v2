@@ -25,6 +25,7 @@
 - [For lenders](https://www.projective.finance/lenders.html): the curated access point for American infrastructure deals. Screened, compliant, middle market deal flow backed by municipal and public offtake, with discovery and portfolio management on one ledger. No minimums: Projective streamlines access without a broker dealer middleman. Request access through the contact form.
 - [Case study: Econergy](https://www.projective.finance/case-study.html): Illinois school solar. $12 million of construction capital, committed four weeks after upload, 100% of construction financed, State of Illinois guarantor.
 - [Contact](https://www.projective.finance/contact.html): contact form for builders and investors. Email hello@projective.finance. Replies within one business day.
+- [Privacy Policy](https://www.projective.finance/privacy-policy.html): how Projective Finance LLC handles personal information.
 - Book a call: https://calendly.com/josh-projective/new-meeting
 
 ## Common questions
@@ -40,10 +41,6 @@ Often not. For projects with investment-grade municipal or utility offtake, Proj
 ### How are projects evaluated and underwritten?
 
 Projective OS reads every document, pulls out the terms that matter and tests each one against policy: offtake tenor against loan term, site control, interconnection status and debt service coverage at base and downside cases. An underwriter reviews the result and nothing moves without a human sign off. Every check is written down.
-
-### Who is eligible to invest?
-
-Qualified investors worldwide, including individuals, family offices, funds and institutions. Investors open an account, fund in any currency and choose a position from development capital through construction lending to permanent debt, with interest paid monthly or at maturity. Availability is subject to eligibility and local regulations.
 
 ### How are renewable energy incentives incorporated into financing?
 
