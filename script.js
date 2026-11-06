@@ -59,6 +59,7 @@
       REQ[g].forEach(function (n) { var el = form.elements[n]; if (el) el.required = on; });
     });
     var rec = form.querySelector('input[name="rec"][value="Yes"]'); if (rec) rec.required = key === 'builder';
+    var up = form.querySelector('.cf-upload'); if (up) { up.style.display = key === 'other' ? 'none' : ''; if (key === 'other' && form.elements.files) { form.elements.files.value = ''; var fl = document.getElementById('cf-files-list'); if (fl) fl.textContent = ''; } }
     var c = COPY[key];
     if (title) title.innerHTML = c[0].replace(/\.$/, '') + '<span style="color: #D9A32B">.</span>';
     if (intro) intro.textContent = c[1];
