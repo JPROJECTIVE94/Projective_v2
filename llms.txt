@@ -8,7 +8,7 @@
 - Capital needs from about $500,000 to $25 million and above.
 - No upfront equity from the builder. Up to 100% of construction cost financed.
 - Multi project pipelines financed through a single vehicle on one ledger: one close, one set of fees.
-- Investor CRM on Projective OS: builders manage their investors directly on Projective, with commitments, contact history, documents and distributions beside each deal.
+- Investor CRM on Projective OS: builders manage their investors directly on Projective, with commitments, contact history, documents and distributions beside each deal. Shown on the For lenders page.
 - Loan servicing on Projective OS: every repayment, covenant and report on one ledger, visible to lenders for the life of the loan.
 - Interest paid monthly on a fixed schedule.
 
@@ -21,7 +21,7 @@
 
 ## Pages
 
-- [Home](https://www.projective.finance/): Projective OS, how a project gets financed (documentation, underwriting, loan servicing), why Projective, Projective vs a traditional lender, open facilities, common questions.
+- [Home](https://www.projective.finance/): why middle market renewables are hard to finance, Projective OS, the Econergy proof numbers, the Projective process (documentation, underwriting, loan servicing), Projective vs a traditional lender, open facilities, global access for qualified investors, common questions.
 - [For lenders](https://www.projective.finance/lenders.html): the curated access point for American infrastructure deals. Screened, compliant, middle market deal flow backed by municipal and public offtake, with discovery, portfolio management and the investor CRM on one ledger. No minimums: Projective streamlines access without a broker dealer middleman. Request access through the contact form.
 - [Case study: Econergy](https://www.projective.finance/case-study.html): Illinois school solar. $12 million of construction capital, committed four weeks after upload, 100% of construction financed, State of Illinois guarantor.
 - [Contact](https://www.projective.finance/contact.html): contact form for builders and investors. Email hello@projective.finance. Replies within one business day.

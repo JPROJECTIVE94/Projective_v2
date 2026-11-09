@@ -72,9 +72,10 @@
     if (el) { el.checked = true; setRole(want); }
   }
   var err = document.getElementById('cf-error'), thanks = document.getElementById('cf-thanks');
+  var ERR_DEFAULT = err ? err.textContent : 'Please complete the required fields.';
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (!form.checkValidity()) { err.hidden = false; var bad = form.querySelector(':invalid'); if (bad) bad.focus(); return; }
+    if (!form.checkValidity()) { err.textContent = ERR_DEFAULT; err.hidden = false; var bad = form.querySelector(':invalid'); if (bad) bad.focus(); return; }
     err.hidden = true;
     var fd = new FormData(form);
     if (FORM_ENDPOINT) {
