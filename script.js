@@ -44,7 +44,7 @@
   if (!form) return;
   var FORM_ENDPOINT = '/api/contact'; // Vercel function in api/contact.js. Set to '' to fall back to the visitor's email client
   var COPY = {
-    builder: ['Get your project financed.', 'We fund infrastructure end to end, from development capital through perm debt. Qualifying projects get pooled and closed from our global network of qualified investors.'],
+    builder: ['Get your project financed.', 'We fund projects from development capital through permanent debt. Qualifying projects are pooled and funded by our network of qualified investors.'],
     investor: ['Lend through Projective.', 'Senior secured lending to solar, storage and municipal projects, from development capital to permanent debt. Tell us your mandate and we will send the term sheet.'],
     other: ['Talk to Projective.', 'Tell us a little about what you need and we will route it to the right person.']
   };
