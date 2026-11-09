@@ -398,3 +398,7 @@ a[aria-label="Projective home"] img{width:130px;height:26px}
 .legal p{margin:0}
 .legal ul{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px}
 .legal a{color:#09133A;text-decoration:underline;text-decoration-color:#D9A32B;text-underline-offset:3px}
+
+/* Star field kept clear of left aligned hero text */
+.stars-band--side{-webkit-mask-image:linear-gradient(90deg,transparent 0,transparent 66%,#000 86%);mask-image:linear-gradient(90deg,transparent 0,transparent 66%,#000 86%)}
+@media (max-width:900px){.stars-band--side{-webkit-mask-image:linear-gradient(180deg,#000 0,transparent 18%);mask-image:linear-gradient(180deg,#000 0,transparent 18%);opacity:.5}}
