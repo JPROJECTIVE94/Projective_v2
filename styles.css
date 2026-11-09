@@ -23,6 +23,7 @@ a:hover{color:#D9A32B}
 .h1-m{font-size:44px !important}
 .h2-m{font-size:34px !important}
 .pad-m{padding:56px 0 !important}
+.pad-m-b{padding:0 0 56px !important}
 }
 
 html{scroll-behavior:smooth}
@@ -94,7 +95,7 @@ html{scroll-behavior:auto}
 }
 @media (max-width:900px){
   .flow{height:auto}
-  .flow__pin{position:static;height:auto;min-height:0;overflow:visible;padding:56px 0 24px;gap:32px}
+  .flow__pin{position:static;height:auto;min-height:0;overflow:visible;padding:56px 0 56px;gap:32px}
   .flow__head{flex-direction:column;align-items:flex-start;gap:20px}
   .flow__tabs{display:none}
   .flow__viewport{overflow:visible;width:calc(100% - 40px)}
