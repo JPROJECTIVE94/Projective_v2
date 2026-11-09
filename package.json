@@ -4,12 +4,14 @@
   "type": "module",
   "dependencies": {
     "@vercel/blob": "^2.8.2",
+    "botid": "^1.5.13",
     "esbuild": "^0.28.2"
   },
   "devDependencies": {
     "esbuild": "^0.25.0"
   },
   "scripts": {
-    "bundle:blob": "esbuild tools/blob-client-entry.js --bundle --minify --format=iife --platform=browser --target=es2018 --outfile=assets/blob-client.js"
+    "bundle:blob": "esbuild tools/blob-client-entry.js --bundle --minify --format=iife --platform=browser --target=es2018 --outfile=assets/blob-client.js",
+    "bundle:botid": "esbuild tools/botid-client-entry.js --bundle --minify --format=iife --platform=browser --target=es2018 --outfile=assets/botid-client.js"
   }
 }

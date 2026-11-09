@@ -2,9 +2,11 @@
 // Attachments normally arrive already uploaded by the browser (api/upload.js); small ones may still come in the body.
 // project's private Vercel Blob store under submissions/<timestamp>-<company>/,
 // and emails hello@projective.finance with the files attached when RESEND_API_KEY is set.
-import { put, get } from '@vercel/blob';
+import { put, get, head } from '@vercel/blob';
+import { isBot } from './_guard.js';
 
 const MAX_TOTAL_BYTES = 4 * 1024 * 1024; // Vercel function request body limit is 4.5 MB
+const MAX_FILES = 10; // per submission, body files and browser uploads combined
 const TO = process.env.CONTACT_TO || 'hello@projective.finance';
 const FROM = process.env.CONTACT_FROM || 'Projective website <onboarding@resend.dev>';
 
@@ -14,6 +16,7 @@ const safeName = (s) => clean(s).replace(/[\/\\]/g, '_').replace(/[^\w.\- ()]/g,
 const esc = (s) => clean(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 export async function POST(request) {
+  if (await isBot(request)) return Response.json({ ok: false, error: 'Access denied' }, { status: 403 });
   let form;
   try { form = await request.formData(); } catch { return Response.json({ ok: false, error: 'Bad form data' }, { status: 400 }); }
 
@@ -28,6 +31,7 @@ export async function POST(request) {
 
   const files = form.getAll('files').filter((f) => typeof f !== 'string' && f.size > 0);
   const total = files.reduce((n, f) => n + f.size, 0);
+  if (files.length > MAX_FILES) return Response.json({ ok: false, error: 'Too many files' }, { status: 413 });
   if (total > MAX_TOTAL_BYTES) return Response.json({ ok: false, error: 'Attachments too large' }, { status: 413 });
 
   // Files the browser already uploaded straight to Blob (see api/upload.js) arrive as JSON in `uploaded`,
@@ -41,8 +45,13 @@ export async function POST(request) {
   const folder = /^submissions\/\d{4}-\d{2}-\d{2}T[\d-]+Z-[a-z0-9-]{1,40}\/$/.test(clientFolder) ? clientFolder : `submissions/${receivedAt.replace(/[:.]/g, '-')}-${slug(company)}/`;
 
   const stored = [];
-  for (const u of uploaded) {
-    if (u && typeof u.pathname === 'string' && u.pathname.startsWith(folder)) stored.push({ name: clean(u.name), size: Number(u.size) || 0, type: clean(u.type), pathname: u.pathname, url: clean(u.url) });
+  // Never trust what the browser says it uploaded: confirm each file exists and take its size from storage.
+  if (!Array.isArray(uploaded)) uploaded = [];
+  for (const u of uploaded.slice(0, MAX_FILES - files.length)) {
+    if (!u || typeof u.pathname !== 'string' || !u.pathname.startsWith(folder) || u.pathname.slice(folder.length).includes('/')) continue;
+    let meta;
+    try { meta = await head(u.pathname); } catch { continue; }
+    stored.push({ name: clean(u.name) || u.pathname.slice(folder.length), size: meta.size, type: meta.contentType || '', pathname: meta.pathname, url: meta.url });
   }
   for (const f of files) {
     const blob = await put(folder + safeName(f.name), f, { access: 'private', addRandomSuffix: false, contentType: f.type || 'application/octet-stream' });

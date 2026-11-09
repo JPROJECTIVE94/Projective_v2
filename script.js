@@ -80,19 +80,22 @@
     if (FORM_ENDPOINT) {
       var picked = form.elements.files && form.elements.files.files ? Array.prototype.slice.call(form.elements.files.files) : [];
       var total = 0; picked.forEach(function (f) { total += f.size; });
-      var MAX_FILE = 50 * 1024 * 1024, direct = !!(window.VercelBlobClient && window.VercelBlobClient.upload);
-      if (direct && picked.some(function (f) { return f.size > MAX_FILE; })) { err.textContent = 'Each file is limited to 50 MB. Email larger files to hello@projective.finance.'; err.hidden = false; return; }
+      var MAX_FILE = 25 * 1024 * 1024, MAX_FILES = 10, direct = !!(window.VercelBlobClient && window.VercelBlobClient.upload);
+      if (picked.length > MAX_FILES) { err.textContent = 'You can attach up to 10 files. Email the rest to hello@projective.finance.'; err.hidden = false; return; }
+      if (direct && picked.some(function (f) { return f.size > MAX_FILE; })) { err.textContent = 'Each file is limited to 25 MB. Email larger files to hello@projective.finance.'; err.hidden = false; return; }
       if (!direct && total > 4 * 1024 * 1024) { err.textContent = 'Attachments are limited to 4 MB in total. Submit without them and email larger files to hello@projective.finance.'; err.hidden = false; return; }
       var btn = form.querySelector('button[type="submit"]'), btnText = btn ? btn.innerHTML : '';
       if (btn) { btn.disabled = true; btn.textContent = picked.length ? 'Uploading…' : 'Sending…'; }
       var fail = function (msg) { if (btn) { btn.disabled = false; btn.innerHTML = btnText; } err.textContent = msg || 'Something went wrong sending the form. Email hello@projective.finance instead.'; err.hidden = false; };
       var company = (fd.get('company') || '').toString().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'unknown';
       var folder = 'submissions/' + new Date().toISOString().replace(/[:.]/g, '-') + '-' + company + '/';
+      var TYPES = { pdf: 'application/pdf', ppt: 'application/vnd.ms-powerpoint', pptx: 'application/vnd.openxmlformats-officedocument.presentationml.presentation', key: 'application/x-iwork-keynote-sffkey', doc: 'application/msword', docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', xls: 'application/vnd.ms-excel', xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', csv: 'text/csv', png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg' };
+      var typeOf = function (f) { var ext = (f.name.split('.').pop() || '').toLowerCase(); return TYPES[ext] || f.type || 'application/octet-stream'; };
       var safe = function (n) { return n.replace(/[\/\\]/g, '_').replace(/[^\w.\- ()]/g, '').slice(0, 120) || 'file'; };
       var uploads = direct ? picked.reduce(function (p, f, i) {
         return p.then(function (list) {
           if (btn) btn.textContent = 'Uploading ' + (i + 1) + ' of ' + picked.length + '…';
-          return window.VercelBlobClient.upload(folder + safe(f.name), f, { access: 'private', handleUploadUrl: '/api/upload', contentType: f.type || 'application/octet-stream', multipart: f.size > 8 * 1024 * 1024 })
+          return window.VercelBlobClient.upload(folder + safe(f.name), f, { access: 'private', handleUploadUrl: '/api/upload', contentType: typeOf(f), multipart: f.size > 8 * 1024 * 1024 })
             .then(function (b) { list.push({ name: f.name, size: f.size, type: f.type, pathname: b.pathname, url: b.url }); return list; });
         });
       }, Promise.resolve([])) : Promise.resolve(null);
