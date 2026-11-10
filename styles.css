@@ -434,3 +434,13 @@ a[aria-label="Projective home"] img{width:130px;height:26px}
 @media (max-width:1180px){.proof-band .cs-stats > div > div:first-child{white-space:normal}}
 @media (max-width:900px){.proof-band .cs-stats > div{border-bottom:1px solid rgba(255,255,255,.14);padding-bottom:20px !important}.proof-band .cs-stats > div:last-child{border-bottom:0}}
 @media (min-width:901px){.proof-band .stars-band--side{-webkit-mask-image:linear-gradient(90deg,transparent 0,transparent 82%,#000 97%);mask-image:linear-gradient(90deg,transparent 0,transparent 82%,#000 97%)}}
+
+/* Case study: quote + results read as one block */
+.cs-quote{padding:80px 0 48px}
+.cs-results{padding:0 0 80px}
+.cs-results > .wrap{padding-top:48px !important;gap:48px}
+@media (max-width:900px){
+  .cs-quote{padding:48px 0 32px}
+  .cs-results{padding:0 0 56px}
+  .cs-results > .wrap{padding-top:32px !important;gap:16px}
+}
