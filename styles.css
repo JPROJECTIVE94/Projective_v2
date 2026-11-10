@@ -1,6 +1,10 @@
 /* Projective Finance — site styles.
    Section-level values live inline in index.html (exported from the design); shared components are here. */
 
+:root{
+  --section-y:clamp(56px,2.5rem + 4vw,112px); /* vertical padding of every page band: 56px on phones, about 98px at 1440 */
+  --fig:clamp(44px,1.75rem + 2.4vw,64px);     /* big proof figures */
+}
 body{margin:0;background:#FFFFFF}
 a{color:#09133A;text-decoration:none}
 a:hover{color:#D9A32B}
@@ -222,7 +226,7 @@ textarea.cf-input{resize:vertical;min-height:72px}
 
 /* Carousel affordance: next card peeks, right edge fades, hint until first move */
 .fac-viewport{position:relative}
-.fac-viewport::after{content:"";position:absolute;top:0;right:-2px;bottom:0;width:56px;background:linear-gradient(90deg,rgba(247,247,245,0),#F7F7F5 85%);pointer-events:none;transition:opacity .3s}
+.fac-viewport::after{content:"";position:absolute;top:0;right:-2px;bottom:0;width:56px;background:linear-gradient(90deg,transparent,var(--fac-fade,#F7F7F5) 85%);pointer-events:none;transition:opacity .3s}
 .fac-viewport.is-end::after{opacity:0}
 .fac-track{padding-right:40px}
 .fac-hint{font:400 12px 'Space Mono',monospace;letter-spacing:.04em;color:#09133A;transition:opacity .4s}
@@ -403,3 +407,30 @@ a[aria-label="Projective home"] img{width:130px;height:26px}
 /* Star field kept clear of left aligned hero text */
 .stars-band--side{-webkit-mask-image:linear-gradient(90deg,transparent 0,transparent 66%,#000 86%);mask-image:linear-gradient(90deg,transparent 0,transparent 66%,#000 86%)}
 @media (max-width:900px){.stars-band--side{-webkit-mask-image:linear-gradient(180deg,#000 0,transparent 18%);mask-image:linear-gradient(180deg,#000 0,transparent 18%);opacity:.5}}
+
+/* Comparison: the Projective column sits on a white panel so the eye lands on it */
+.cmp{position:relative}
+.cmp::before{content:"";position:absolute;top:0;bottom:0;left:calc(50% + 182px - 20px);right:0;background:#FFFFFF;z-index:0;pointer-events:none}
+.cmp-head > div:last-child,.cmp-cell--proj{padding-right:20px}
+.cmp > *{position:relative;z-index:1}
+@media (max-width:900px){.cmp::before{display:none}.cmp-head > div:last-child,.cmp-cell--proj{padding-right:0}}
+
+/* FAQ: hanging heading, questions in the wider right column */
+.faq-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:72px;align-items:start}
+.faq-head{position:sticky;top:40px;display:flex;flex-direction:column;gap:16px;max-width:460px}
+.faq-head h2{text-wrap:balance}
+.faq-list details:first-child{border-top:0}
+.faq-list details:first-child summary{padding-top:4px}
+@media (max-width:900px){
+  .faq-grid{grid-template-columns:1fr;row-gap:28px}
+  .faq-head{position:static}
+  .faq-list details:first-child{border-top:1px solid rgba(9,19,58,.10)}
+  .faq-list details:first-child summary{padding-top:18px}
+}
+
+/* Proof band: figures hold one line where there is room */
+@media (min-width:901px){.proof-band .cs-stats{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.4fr) !important}}
+.proof-band .cs-stats > div > div:first-child{white-space:nowrap}
+@media (max-width:1180px){.proof-band .cs-stats > div > div:first-child{white-space:normal}}
+@media (max-width:900px){.proof-band .cs-stats > div{border-bottom:1px solid rgba(255,255,255,.14);padding-bottom:20px !important}.proof-band .cs-stats > div:last-child{border-bottom:0}}
+@media (min-width:901px){.proof-band .stars-band--side{-webkit-mask-image:linear-gradient(90deg,transparent 0,transparent 82%,#000 97%);mask-image:linear-gradient(90deg,transparent 0,transparent 82%,#000 97%)}}
